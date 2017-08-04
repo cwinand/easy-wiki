@@ -3,11 +3,16 @@ import React from 'react';
 import CategoryItem from './CategoryItem'
 import AddCategory from '../containers/AddCategory'
 
-const CategoryList = ({ categories }) => {
+const CategoryList = ({ categories, onRemoveCategory }) => {
+
+  const handleRemoveCategory = (id, order) => {
+    onRemoveCategory(id, order);
+  }
+
   return(
     <ol>
-      { categories.map( (category, index ) => (
-        <CategoryItem key={index} order={category.order} title={category.title} />
+      { categories.map( (category ) => (
+        <CategoryItem key={category.id} category={category} onRemoveCategory={handleRemoveCategory} />
       )
       )}
       <li><AddCategory /></li>

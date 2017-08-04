@@ -8,14 +8,23 @@ const categories = (state = [], action) => {
         ...state,
         {
           title: action.title,
+          id: action.id,
           order: state.length
         }
       ]
     case 'REMOVE_CATEGORY':
-      return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
-      ]
+      return state.filter( (item) => {
+        return item.id !== action.id
+      }).map((item, index) => {
+          if ( item.order !== index ) {
+            return {
+              ...item,
+              order: index
+            }
+          } else {
+            return item
+          }
+        })
     default:
       return state;
   }
