@@ -1,20 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addCategory } from '../actions/CategoriesActions';
-
-const AddCategory = ({ dispatch }) => {
-  let title;
+const AddCategory = ({ onAddCategory }) => {
+  let input;
 
   const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(title);
-      dispatch(addCategory( title ))
+      onAddCategory( input.value );
+      input.value = "";
     }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" ref={ input => title = input.value } />
+      <input type="text" ref={ node => input = node } />
     </form>
   );
 }

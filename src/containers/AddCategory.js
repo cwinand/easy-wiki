@@ -3,8 +3,12 @@ import { connect } from 'react-redux';
 import AddCategoryComponent from '../components/AddCategory';
 import { addCategory } from '../actions/CategoriesActions';
 
-const mapDispatchToProps = () => {
-  return {}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddCategory: (title) => {
+      dispatch( addCategory( title ) );
+    }
+  }
 }
 
 
