@@ -5,7 +5,7 @@ import path from 'path';
 
 export default {
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx']
+    extensions: ['*', '.js', '.jsx', '.json']
   },
   devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   entry: [
@@ -14,7 +14,7 @@ export default {
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
     // Defining path seems necessary for this to work consistently on Windows machines.
-    path.resolve(__dirname, 'src/index.tsx')
+    path.resolve(__dirname, 'src/index.jsx')
   ],
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
@@ -52,8 +52,7 @@ export default {
   ],
   module: {
     rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader", options: {"useBabel": true, "useCache": true } },
+      {test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader']},
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader'},
