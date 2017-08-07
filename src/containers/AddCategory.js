@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import AddCategoryComponent from '../components/AddCategory';
-import { addCategory } from '../actions/CategoriesActions';
+import { addCategory } from '../actions/categories';
 
 const mapDispatchToProps = (dispatch) => {
   return {

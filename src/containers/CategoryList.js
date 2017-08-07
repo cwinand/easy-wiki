@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
-import { removeCategory, moveCategory } from '../actions/CategoriesActions';
+import { removeCategory, moveCategory } from '../actions/categories';
 
 const mapStateToProps = (state) => {
   return {

@@ -1,4 +1,4 @@
-import { CategoriesAction } from '../actions/CategoriesActions';
+import { CategoriesAction } from '../actions/categories';
 import { arrayMove } from 'react-sortable-hoc';
 
 const categories = (state = [], action) => {
