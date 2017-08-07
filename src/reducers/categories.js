@@ -28,9 +28,7 @@ const categories = (state = [], action) => {
     case 'MOVE_CATEGORY':
       return arrayMove( state, action.oldIndex, action.newIndex )
         .map((item, index) => {
-          if (index >= action.newIndex) {
-            item.order = index;
-          }
+          item.order = index;
           return item;
         });
     default:
