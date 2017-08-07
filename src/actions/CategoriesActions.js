@@ -14,3 +14,11 @@ export const removeCategory = (id, order) => {
     order
   };
 }
+
+export const moveCategory = (oldIndex, newIndex) => {
+  return {
+    type: 'MOVE_CATEGORY',
+    oldIndex,
+    newIndex
+  }
+}

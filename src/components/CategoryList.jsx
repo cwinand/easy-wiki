@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { SortableContainer } from 'react-sortable-hoc';
+
 import CategoryItem from './CategoryItem'
 import AddCategory from '../containers/AddCategory'
 
-const CategoryList = ({ categories, onRemoveCategory }) => {
+const SortableCategoryList = SortableContainer(({ categories, onRemoveCategory }) => {
 
   const handleRemoveCategory = (id, order) => {
     onRemoveCategory(id, order);
@@ -11,13 +13,34 @@ const CategoryList = ({ categories, onRemoveCategory }) => {
 
   return(
     <ol>
-      { categories.map( (category ) => (
-        <CategoryItem key={category.id} category={category} onRemoveCategory={handleRemoveCategory} />
+      { categories.map( (category, index ) => (
+        <CategoryItem
+          key={category.id}
+          index={index}
+          category={category}
+          onRemoveCategory={handleRemoveCategory} />
       )
       )}
-      <li><AddCategory /></li>
     </ol>
   );
-}
+});
+
+const CategoryList = SortableContainer(({ categories, onRemoveCategory, onMoveCategory }) => {
+
+  const handleRemoveCategory = (id, order) => {
+    onRemoveCategory(id, order);
+  }
+
+  const handleMoveCategory = ({oldIndex, newIndex}) => {
+    onMoveCategory(oldIndex, newIndex)
+  }
+
+  return(
+    <div>
+      <SortableCategoryList categories={categories} onRemoveCategory={handleRemoveCategory} onSortEnd={handleMoveCategory} />
+      <AddCategory />
+    </div>
+  );
+});
 
 export default CategoryList;

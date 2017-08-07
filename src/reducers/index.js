@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import { addCategory, removeCategory, CategoriesAction } from '../actions/CategoriesActions';
+import { arrayMove } from 'react-sortable-hoc';
+
+import { CategoriesAction } from '../actions/CategoriesActions';
 
 const categories = (state = [], action) => {
   switch (action.type) {
@@ -15,7 +17,7 @@ const categories = (state = [], action) => {
     case 'REMOVE_CATEGORY':
       return state.filter( (item) => {
         return item.id !== action.id
-      }).map((item, index) => {
+      }).map((item, index) => { 
           if ( item.order !== index ) {
             return {
               ...item,
@@ -25,6 +27,8 @@ const categories = (state = [], action) => {
             return item
           }
         })
+    case 'MOVE_CATEGORY':
+      return arrayMove( state, action.oldIndex, action.newIndex );
     default:
       return state;
   }

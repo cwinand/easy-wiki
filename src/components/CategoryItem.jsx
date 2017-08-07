@@ -1,6 +1,7 @@
 import React from 'react';
+import { SortableElement } from 'react-sortable-hoc';
 
-const CategoryItem = ({ category, onRemoveCategory }) => {
+const CategoryItem = SortableElement(({ category, onRemoveCategory }) => {
   const { title, order, id } = category;
 
   const handleRemoveCategory = () => {
@@ -12,6 +13,6 @@ const CategoryItem = ({ category, onRemoveCategory }) => {
       <button onClick={handleRemoveCategory}>Remove</button>
     </li>
   );
-}
+});
 
 export default CategoryItem;
