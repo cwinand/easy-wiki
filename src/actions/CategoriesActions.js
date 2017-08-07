@@ -1,7 +1,9 @@
+import * as types from '../constants/action_types';
+
 let nextCategoryId = 1;
 export const addCategory = (title) => {
   return {
-    type: 'ADD_CATEGORY',
+    type: types.ADD_CATEGORY,
     id: nextCategoryId++,
     title
   };
@@ -9,7 +11,7 @@ export const addCategory = (title) => {
 
 export const removeCategory = (id, order) => {
   return {
-    type: 'REMOVE_CATEGORY',
+    type: types.REMOVE_CATEGORY,
     id,
     order
   };
@@ -17,7 +19,7 @@ export const removeCategory = (id, order) => {
 
 export const moveCategory = (oldIndex, newIndex) => {
   return {
-    type: 'MOVE_CATEGORY',
+    type: types.MOVE_CATEGORY,
     oldIndex,
     newIndex
   }
