@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
 import AddCategoryComponent from '../components/AddCategory';
-import { addCategory } from '../actions/categories';
+import { apiPostCategory } from '../actions/categories';
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onAddCategory: (title) => {
-      dispatch( addCategory( title ) );
+      dispatch( apiPostCategory( title ) );
     }
   }
 }
