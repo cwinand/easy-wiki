@@ -16,9 +16,10 @@ class Api::CategoriesController < ApplicationController
   # POST /categories
   def create
     @category = Category.new(category_params)
+    @category.order = Category.all.count
 
     if @category.save
-      render json: @category, status: :created, location: @category
+      render json: @category, status: :created, location: @api_category
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -31,6 +32,23 @@ class Api::CategoriesController < ApplicationController
     else
       render json: @category.errors, status: :unprocessable_entity
     end
+  end
+
+  # PUT /categories
+  # Right now, the only mass update needed is for the order of a category
+  # Will have to update this controller method if another mass update field is needed
+  def update_all
+    @categories = Category.where(id: params[:ids])
+
+    @categories.each do |category|
+      params[:updates].each do |update|
+        if update[:id] == category[:id]
+          category.update(order: update[:order])
+        end
+      end
+    end
+
+    render json: @categories
   end
 
   # DELETE /categories/1
