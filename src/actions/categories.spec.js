@@ -1,37 +1,61 @@
 import * as actions from './categories';
 import * as types from '../constants/action_types';
 
-describe('Category actions', () => {
+
+describe('Synchronous category actions', () => {
   
-  test('should create an action to add a category', () => {
-    const title = 'Action creator test';
+  test('should create an action to request all categories', () => {
     const expectedAction = {
-      type: types.ADD_CATEGORY,
-      title,
+      type: types.MAKE_REQUEST
+    }
+
+    expect( actions.makeRequest() ).toEqual( expectedAction );
+  });
+
+  test('should create an action to receive multiple categories', () => {
+    const expectedAction = {
+      type: types.RECEIVE_CATEGORIES,
+      data: [{}, {}, {}]
+    }
+
+    expect( actions.receiveCategories([{}, {}, {}]) ).toEqual( expectedAction );
+  });
+
+  test('should create an action to receive a single category', () => {
+    const expectedAction = {
+      type: types.RECEIVE_CATEGORY,
+      data: { id: 1 }
+    }
+
+    expect( actions.receiveCategory({ id: 1 }) ).toEqual( expectedAction );
+  });
+
+  test('should create an action to delete a category', () => {
+    const expectedAction = {
+      type: types.DELETE_CATEGORY,
       id: 1
-    };
+    }
 
-    expect(actions.addCategory( title ) ).toEqual( expectedAction );
+    expect( actions.deleteCategory( 1 ) ).toEqual( expectedAction );
   });
 
-  test('should create an action to remove a category', () => {
+  test('should create an action to update a category', () => {
     const expectedAction = {
-      type: types.REMOVE_CATEGORY,
-      id: 1,
-      order: 0
-    };
+      type: types.UPDATE_CATEGORY,
+      data: { id: 1 }
+    }
 
-    expect(actions.removeCategory(1, 0)).toEqual(expectedAction);
+    expect( actions.updateCategory({ id: 1 }) ).toEqual( expectedAction );
   });
 
-  test('should create an action to move a category', () => {
-    const expectedAction = {
-      type: types.MOVE_CATEGORY,
-      oldIndex: 0,
-      newIndex: 1
-    };
+  // test('should create an action to move a category', () => {
+  //   const expectedAction = {
+  //     type: types.MOVE_CATEGORY,
+  //     oldIndex: 0,
+  //     newIndex: 1
+  //   };
 
-    expect(actions.moveCategory(0, 1)).toEqual(expectedAction);
-  });
+  //   expect(actions.moveCategory(0, 1)).toEqual(expectedAction);
+  // });
 
 });
