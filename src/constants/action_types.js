@@ -1,6 +1,13 @@
 /* 
  * Category Action Types
  */
-export const ADD_CATEGORY    = "ADD_CATEGORY";
-export const REMOVE_CATEGORY = "REMOVE_CATEGORY";
 export const MOVE_CATEGORY   = "MOVE_CATEGORY";
+
+export const MAKE_REQUEST       = "MAKE_REQUEST";
+export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
+export const RECEIVE_CATEGORY   = "RECEIVE_CATEGORY";
+export const DELETE_CATEGORY    = "DELETE_CATEGORY";
+export const UPDATE_CATEGORY    = "UPDATE_CATEGORY";
+export const UPDATE_CATEGORIES  = "UPDATE_CATEGORIES"; 
+
+export const UPDATE_CATEGORIES_ERROR = "UPDATE_CATEGORIES_ERROR "; 

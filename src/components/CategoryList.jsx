@@ -32,12 +32,17 @@ const CategoryList = SortableContainer(({ categories, onRemoveCategory, onMoveCa
   }
 
   const handleMoveCategory = ({oldIndex, newIndex}) => {
-    onMoveCategory(oldIndex, newIndex)
+    if ( oldIndex !== newIndex ) {
+      onMoveCategory(oldIndex, newIndex, categories)
+    }
   }
 
   return(
     <div>
-      <SortableCategoryList categories={categories} onRemoveCategory={handleRemoveCategory} onSortEnd={handleMoveCategory} />
+      <SortableCategoryList
+        categories={categories}
+        onRemoveCategory={handleRemoveCategory}
+        onSortEnd={handleMoveCategory} />
       <AddCategory />
     </div>
   );

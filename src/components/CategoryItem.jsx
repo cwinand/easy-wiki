@@ -5,7 +5,7 @@ const CategoryItem = SortableElement(({ category, onRemoveCategory }) => {
   const { title, order, id } = category;
 
   const handleRemoveCategory = () => {
-    onRemoveCategory(id, order);
+    onRemoveCategory(id);
   }
 
   return(

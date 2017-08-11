@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
-import { removeCategory, moveCategory } from '../actions/categories';
+import { apiDeleteCategory, updateCategoriesOrder } from '../actions/categories';
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories
+    categories: state.categories.items.sort( (a, b) => a.order - b.order )
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onRemoveCategory: (id, order) => {
-      dispatch( removeCategory(id, order) );
+      dispatch( apiDeleteCategory(id) );
     },
-    onMoveCategory: (oldIndex, newIndex) => {
-      dispatch( moveCategory(oldIndex, newIndex) );
+    onMoveCategory: (oldIndex, newIndex, categories) => {
+      dispatch( updateCategoriesOrder(oldIndex, newIndex, categories) );
     }
   }
 }
