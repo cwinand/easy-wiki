@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
-import { apiDeleteCategory, updateCategoriesOrder } from '../actions/categories';
+import { apiDeleteCategory, apiPutCategories } from '../actions/categories';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch( apiDeleteCategory(id) );
     },
     onMoveCategory: (oldIndex, newIndex, categories) => {
-      dispatch( updateCategoriesOrder(oldIndex, newIndex, categories) );
+      dispatch( apiPutCategories(categories, oldIndex, newIndex) );
     }
   }
 }

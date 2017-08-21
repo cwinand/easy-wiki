@@ -1,6 +1,7 @@
 import * as types from '../constants/action_types';
-import axios from 'axios';
+import { normalizeById, normalizeForPutCategories } from '../utils/categories'
 
+import axios from 'axios';
 import { arrayMove } from 'react-sortable-hoc';
 
 export const makeRequest = () => {
@@ -88,7 +89,9 @@ export const apiPutCategory = (id, updates) => {
   }
 }
 
-export const apiPutCategories = (ids, updates) => {
+export const apiPutCategories = (oldIndex, newIndex, categories) => {
+  const {ids, updates} = normalizeForPutCategories(oldIndex, newIndex, categories);
+
   return dispatch => {
     dispatch( makeRequest() );
     return axios.put('http://localhost:3002/api/categories', { ids, updates })
@@ -112,31 +115,4 @@ export const apiDeleteCategory = (id) => {
   }
 }
 
-export const updateCategoriesOrder = (oldIndex, newIndex, categories) => {
-  const reordered = arrayMove( categories, oldIndex, newIndex )
-    .map((item, index) => {
-      item.order = index;
-      return { 
-        order: index,
-        id: item.id
-      }
-    });
 
-  const lowIndex = oldIndex < newIndex ? oldIndex : newIndex;
-  const highIndex = oldIndex > newIndex ? oldIndex : newIndex;
-
-  const updates = reordered.slice(lowIndex, highIndex + 1);
-  const ids = updates.reduce( (acc, item) => acc.concat(item.id), [] );
-
-  return dispatch => {
-    dispatch( apiPutCategories( ids, updates ) )
-  }
-}
-
-const normalizeById = (data) => {
-  return data.reduce( (obj, item) => { 
-    let newObj = {};
-    newObj[item.id] = item;
-    return Object.assign( obj, newObj ) 
-  }, {})
-}
