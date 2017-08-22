@@ -7,7 +7,7 @@ describe('Categories reducer', () => {
       isFetching: false,
       items: []
     }
-    const newState = categories( oldState, { type: types.MAKE_REQUEST } )
+    const newState = categories( oldState, { type: types.CATEGORIES_REQUEST } )
 
     expect( newState.isFetching).toBe( true );
   });
@@ -18,7 +18,7 @@ describe('Categories reducer', () => {
       items: []
     }
     const newState = categories( oldState, {
-      type: types.RECEIVE_CATEGORIES,
+      type: types.GET_CATEGORIES_SUCCESS,
       data: [ {}, {}, {} ]
     });
 
@@ -31,7 +31,7 @@ describe('Categories reducer', () => {
       items: []
     };
     const newState = categories( oldState, {
-      type: types.RECEIVE_CATEGORY,
+      type: types.POST_CATEGORY_SUCCESS,
       data: {
         title: 'Test Category', 
         order: 0,
@@ -61,7 +61,7 @@ describe('Categories reducer', () => {
       ]
     };
     const newState = categories(oldState, {
-      type: types.DELETE_CATEGORY,
+      type: types.DELETE_CATEGORY_SUCCESS,
       id: 1
     });
 
@@ -81,7 +81,7 @@ describe('Categories reducer', () => {
       ]
     }
     const newState = categories( oldState, {
-      type: types.UPDATE_CATEGORY,
+      type: types.PUT_CATEGORY_SUCCESS,
       data: {
         title: 'Test Category Changed',
         order: 1,
@@ -119,7 +119,7 @@ describe('Categories reducer', () => {
       ]
     };
     const newState = categories( oldState, {
-      type: types.UPDATE_CATEGORIES,
+      type: types.PUT_CATEGORIES_SUCCESS,
       data: {
         1: {
           title: 'Test Category 1',

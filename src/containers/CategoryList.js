@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
+import { normalizeForPutCategories } from '../utils/categories';
 import { apiDeleteCategory, apiPutCategories } from '../actions/categories';
 
 const mapStateToProps = (state) => {
@@ -12,10 +13,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onRemoveCategory: (id, order) => {
-      dispatch( apiDeleteCategory(id) );
+      dispatch( apiDeleteCategory(id, order) );
     },
     onMoveCategory: (oldIndex, newIndex, categories) => {
-      dispatch( apiPutCategories(categories, oldIndex, newIndex) );
+      const {ids, updates} = normalizeForPutCategories(oldIndex, newIndex, categories);
+      dispatch( apiPutCategories(ids, updates) );
     }
   }
 }
