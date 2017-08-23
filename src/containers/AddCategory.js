@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import AddCategoryComponent from '../components/AddCategory';
 import { apiPostCategory } from '../actions/categories';
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = ( dispatch ) => {
   return {
-    onAddCategory: (title) => {
+    onAddCategory: ( title ) => {
       dispatch( apiPostCategory( title ) );
     }
   }
@@ -15,6 +15,6 @@ const mapDispatchToProps = (dispatch) => {
 const AddCategory = connect(
   null,
   mapDispatchToProps
-)(AddCategoryComponent);
+)( AddCategoryComponent );
 
 export default AddCategory;

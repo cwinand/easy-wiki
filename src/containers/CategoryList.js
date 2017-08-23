@@ -4,20 +4,20 @@ import CategoryListComponent from '../components/CategoryList';
 import { normalizeForPutCategories } from '../utils/categories';
 import { apiDeleteCategory, apiPutCategories } from '../actions/categories';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ( state ) => {
   return {
-    categories: state.categories.items.sort( (a, b) => a.order - b.order )
+    categories: state.categories.items.sort( ( a, b ) => a.order - b.order )
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = ( dispatch ) => {
   return {
-    onRemoveCategory: (id, order) => {
-      dispatch( apiDeleteCategory(id, order) );
+    onRemoveCategory: ( id, order ) => {
+      dispatch( apiDeleteCategory( id, order ) );
     },
-    onMoveCategory: (oldIndex, newIndex, categories) => {
-      const {ids, updates} = normalizeForPutCategories(categories, oldIndex, newIndex );
-      dispatch( apiPutCategories(ids, updates) );
+    onMoveCategory: ( oldIndex, newIndex, categories ) => {
+      const { ids, updates } = normalizeForPutCategories( categories, oldIndex, newIndex  );
+      dispatch( apiPutCategories( ids, updates ) );
     }
   }
 }
@@ -25,6 +25,6 @@ const mapDispatchToProps = (dispatch) => {
 const CategoryList = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CategoryListComponent);
+)( CategoryListComponent );
 
 export default CategoryList;

@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const AddCategory = ({ onAddCategory }) => {
+const AddCategory = ( { onAddCategory } ) => {
   let input;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = ( e ) => {
       e.preventDefault();
       onAddCategory( input.value );
       input.value = "";
     }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={ handleSubmit }>
       <input type="text" ref={ node => input = node } />
     </form>
   );

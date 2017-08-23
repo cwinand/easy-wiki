@@ -5,9 +5,9 @@ const categories = (
   state = {
     isFetching: false,
     items: []
-  }, action) => {
+  }, action ) => {
     // let newItems = [];
-    switch (action.type) {
+    switch ( action.type ) {
       // case types.MOVE_CATEGORY:
       // return arrayMove( state, action.oldIndex, action.newIndex )
       //   .map((item, index) => {
@@ -39,17 +39,17 @@ const categories = (
       case types.DELETE_CATEGORY_SUCCESS:
         return {
           isFetching: false,
-          items: state.items.filter( (item) => item.id !== action.id )
+          items: state.items.filter( ( item ) => item.id !== action.id )
         }
       case types.PUT_CATEGORY_SUCCESS:
         return {
           isFetching: false,
-          items: state.items.map( (item) => item.id === action.data.id ? action.data : item )
+          items: state.items.map( ( item ) => item.id === action.data.id ? action.data : item )
         }
       case types.PUT_CATEGORIES_SUCCESS:
         return {
           isFetching: false,
-          items: state.items.map( (item) => action.data.hasOwnProperty( item.id ) ? action.data[item.id] : item )
+          items: state.items.map( ( item ) => action.data.hasOwnProperty( item.id ) ? action.data[ item.id ] : item )
         }
       default:
         return state;

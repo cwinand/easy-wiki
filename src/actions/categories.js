@@ -9,42 +9,42 @@ export const categoriesRequest = () => {
   }
 }
 
-export const getCategoriesSuccess = (data) => {
+export const getCategoriesSuccess = ( data ) => {
   return {
     type: types.GET_CATEGORIES_SUCCESS,
     data
   }
 }
 
-export const getCategoriesFailure = (error) => {
+export const getCategoriesFailure = ( error ) => {
   return {
     type: types.GET_CATEGORIES_FAILURE,
     error
   }
 }
 
-export const postCategorySuccess = (data) => {
+export const postCategorySuccess = ( data ) => {
   return {
     type: types.POST_CATEGORY_SUCCESS,
     data
   }
 }
 
-export const postCategoryFailure = (error) => {
+export const postCategoryFailure = ( error ) => {
   return {
     type: types.POST_CATEGORY_FAILURE,
     error
   }
 }
 
-export const putCategorySuccess = (data) => {
+export const putCategorySuccess = ( data ) => {
   return {
     type: types.PUT_CATEGORY_SUCCESS,
     data
   }
 }
 
-export const putCategoryFailure = (error) => {
+export const putCategoryFailure = ( error ) => {
   return {
     type: types.PUT_CATEGORY_FAILURE,
     error
@@ -65,14 +65,14 @@ export const putCategoriesFailure = ( error ) => {
   }
 }
 
-export const deleteCategorySuccess = (id) => {
+export const deleteCategorySuccess = ( id ) => {
   return {
     type: types.DELETE_CATEGORY_SUCCESS,
     id
   };
 }
 
-export const deleteCategoryFailure = (error) => {
+export const deleteCategoryFailure = ( error ) => {
   return {
     type: types.DELETE_CATEGORY_FAILURE,
     error
@@ -90,7 +90,7 @@ export const deleteCategoryFailure = (error) => {
 export const apiGetCategories = () => {
   return dispatch => {
     dispatch( categoriesRequest() );
-    return axios.get('http://localhost:3002/api/categories')
+    return axios.get( 'http://localhost:3002/api/categories' )
       .then( response => {
         dispatch(getCategoriesSuccess( response.data ));
       }, error => {
@@ -99,10 +99,10 @@ export const apiGetCategories = () => {
   }
 }
 
-export const apiPostCategory = (title) => {
+export const apiPostCategory = ( title ) => {
   return dispatch => {
     dispatch( categoriesRequest() );
-    return axios.post('http://localhost:3002/api/categories', { title })
+    return axios.post( 'http://localhost:3002/api/categories', { title } )
       .then( response => {
         dispatch(postCategorySuccess( response.data ) );
       }, error => {
@@ -111,10 +111,10 @@ export const apiPostCategory = (title) => {
   }
 }
 
-export const apiPutCategory = (id, updates) => {
+export const apiPutCategory = ( id, updates ) => {
   return dispatch => {
     dispatch( categoriesRequest() );
-    return axios.put('http://localhost:3002/api/categories/' + id, updates)
+    return axios.put( 'http://localhost:3002/api/categories/' + id, updates )
       .then( response => {
         dispatch( putCategorySuccess( response.data ) );
       }, error => {
@@ -123,12 +123,12 @@ export const apiPutCategory = (id, updates) => {
   }
 }
 
-export const apiPutCategories = (ids, updates) => {
+export const apiPutCategories = ( ids, updates ) => {
   return dispatch => {
     dispatch( categoriesRequest() );
-    return axios.put('http://localhost:3002/api/categories', { ids, updates })
+    return axios.put( 'http://localhost:3002/api/categories', { ids, updates } )
       .then( response => {
-        const normalizedData = normalizeById(response.data);
+        const normalizedData = normalizeById( response.data );
         dispatch( putCategoriesSuccess( normalizedData ) );
       }, error => {
         dispatch( putCategoriesFailure( error ) )
@@ -136,10 +136,10 @@ export const apiPutCategories = (ids, updates) => {
   }
 }
 
-export const apiDeleteCategory = (id) => {
+export const apiDeleteCategory = ( id ) => {
   return dispatch => {
     dispatch( categoriesRequest() );
-    return axios.delete('http://localhost:3002/api/categories/' + id)
+    return axios.delete( 'http://localhost:3002/api/categories/' + id )
       .then( response => {
         dispatch( deleteCategorySuccess( response.data.id ) );
       }, error => {

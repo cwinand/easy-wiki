@@ -1,18 +1,18 @@
 import categories from './categories';
 import * as types from '../constants/action_types';
 
-describe('Categories reducer', () => {
-  test('sets isFetching to true', () => {
+describe( 'Categories reducer', () => {
+  test( 'sets isFetching to true', () => {
     const oldState = {
       isFetching: false,
       items: []
     }
     const newState = categories( oldState, { type: types.CATEGORIES_REQUEST } )
 
-    expect( newState.isFetching).toBe( true );
+    expect( newState.isFetching ).toBe( true );
   });
 
-  test('adds multiple categories to state', () => {
+  test( 'adds multiple categories to state', () => {
     const oldState = {
       isFetching: true,
       items: []
@@ -25,7 +25,7 @@ describe('Categories reducer', () => {
     expect( newState.items.length ).toBe( 3 );
   });
 
-  test('adds single category to state', () => {
+  test( 'adds single category to state', () => {
     const oldState = {
       isFetching: true,
       items: []
@@ -33,23 +33,23 @@ describe('Categories reducer', () => {
     const newState = categories( oldState, {
       type: types.POST_CATEGORY_SUCCESS,
       data: {
-        title: 'Test Category', 
+        title: 'Test Category',
         order: 0,
         id: 1
       }
     });
 
-    expect(newState.isFetching).toBe(false);
-    expect(newState.items).toEqual([
+    expect( newState.isFetching ).toBe( false );
+    expect( newState.items ).toEqual([
       {
-        title: 'Test Category', 
+        title: 'Test Category',
         order: 0,
         id: 1
       }
     ]);
   });
 
-  test('removes single category from state', () => {
+  test( 'removes single category from state', () => {
     const oldState = {
       isFetching: true,
       items: [
@@ -60,16 +60,16 @@ describe('Categories reducer', () => {
         }
       ]
     };
-    const newState = categories(oldState, {
+    const newState = categories( oldState, {
       type: types.DELETE_CATEGORY_SUCCESS,
       id: 1
     });
 
-    expect(newState.isFetching).toBe(false);
-    expect(newState.items).toEqual([]);
+    expect( newState.isFetching ).toBe( false );
+    expect( newState.items ).toEqual( [] );
   });
 
-  test('updates single category in state', () => {
+  test( 'updates single category in state', () => {
     const oldState = {
       isFetching: true,
       items: [
@@ -89,15 +89,15 @@ describe('Categories reducer', () => {
       }
     });
 
-    expect(newState.isFetching).toBe(false);
-    expect(newState.items[0]).toEqual({
-        title: 'Test Category Changed',
-        order: 1,
-        id: 1
-      });
+    expect( newState.isFetching ).toBe( false );
+    expect( newState.items[ 0 ] ).toEqual({
+      title: 'Test Category Changed',
+      order: 1,
+      id: 1
+    });
   });
 
-  test('updates multiple categories in state', () => {
+  test( 'updates multiple categories in state', () => {
     const oldState = {
       isFetching: true,
       items: [
@@ -134,22 +134,22 @@ describe('Categories reducer', () => {
       }
     });
 
-    expect(newState.isFetching).toBe(false);
-    expect(newState.items[0]).toEqual({
-          title: 'Test Category 1',
-          id: 1,
-          order: 1
-        });
-    expect(newState.items[1]).toEqual({
-          title: 'Test Category 2',
-          id: 2,
-          order: 0
-        });
-    expect(newState.items[2]).toEqual({
-          title: 'Test Category 3',
-          id: 3,
-          order: 2
-        });
+    expect( newState.isFetching ).toBe( false );
+    expect( newState.items[ 0 ] ).toEqual({
+      title: 'Test Category 1',
+      id: 1,
+      order: 1
+    });
+    expect( newState.items[ 1 ] ).toEqual({
+      title: 'Test Category 2',
+      id: 2,
+      order: 0
+    });
+    expect( newState.items[ 2 ] ).toEqual({
+      title: 'Test Category 3',
+      id: 3,
+      order: 2
+    });
   });
 
   // test('moves category in state', () => {
@@ -179,4 +179,4 @@ describe('Categories reducer', () => {
   //   expect(newState.items[0].order).toEqual(0);
   //   expect(newState.items[1].order).toEqual(1);
   // });
-});
+} );

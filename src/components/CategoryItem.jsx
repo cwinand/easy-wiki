@@ -1,16 +1,16 @@
 import React from 'react';
 import { SortableElement } from 'react-sortable-hoc';
 
-const CategoryItem = SortableElement(({ category, onRemoveCategory }) => {
+const CategoryItem = SortableElement( ( { category, onRemoveCategory } ) => {
   const { title, order, id } = category;
 
   const handleRemoveCategory = () => {
-    onRemoveCategory(id);
+    onRemoveCategory( id );
   }
 
   return(
-    <li>{title}, order: {order}, id: {id}
-      <button onClick={handleRemoveCategory}>Remove</button>
+    <li>{ title }, order: { order }, id: { id }
+    <button onClick={ handleRemoveCategory }>Remove</button>
     </li>
   );
 });
