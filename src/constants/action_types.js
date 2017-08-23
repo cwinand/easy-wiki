@@ -1,7 +1,6 @@
 /* 
  * Category Action Types
  */
-export const MOVE_CATEGORY   = "MOVE_CATEGORY";
 
 export const CATEGORIES_REQUEST = "CATEGORIES_REQUEST";
 

@@ -1,24 +1,11 @@
 import * as types from '../constants/action_types';
-// import { arrayMove } from 'react-sortable-hoc';
 
 const categories = (
   state = {
     isFetching: false,
     items: []
   }, action ) => {
-    // let newItems = [];
     switch ( action.type ) {
-      // case types.MOVE_CATEGORY:
-      // return arrayMove( state, action.oldIndex, action.newIndex )
-      //   .map((item, index) => {
-      //     item.order = index;
-      //     return item;
-      //   });
-
-        // return {
-        //   ...state,
-        //   items: newItems
-        // }
       case types.CATEGORIES_REQUEST:
         return {
           ...state,

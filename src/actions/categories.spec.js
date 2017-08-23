@@ -59,20 +59,8 @@ describe( 'Synchronous category actions', () => {
     }
 
     expect( actions.deleteCategorySuccess( 1 ) ).toEqual( expectedAction );
-  } );
-
-
-  // test('should create an action to move a category', () => {
-  //   const expectedAction = {
-  //     type: types.MOVE_CATEGORY,
-  //     oldIndex: 0,
-  //     newIndex: 1
-  //   };
-
-  //   expect(actions.moveCategory(0, 1)).toEqual(expectedAction);
-  // });
-
-} );
+  });
+});
 
 describe( 'Asynchronous category functions', () => {
   afterEach( () => {

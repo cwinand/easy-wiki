@@ -79,14 +79,6 @@ export const deleteCategoryFailure = ( error ) => {
   };
 }
 
-// export const moveCategory = (oldIndex, newIndex) => {
-//   return {
-//     type: types.MOVE_CATEGORY,
-//     oldIndex,
-//     newIndex
-//   }
-// }
-
 export const apiGetCategories = () => {
   return dispatch => {
     dispatch( categoriesRequest() );
