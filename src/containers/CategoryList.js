@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch( apiDeleteCategory(id, order) );
     },
     onMoveCategory: (oldIndex, newIndex, categories) => {
-      const {ids, updates} = normalizeForPutCategories(oldIndex, newIndex, categories);
+      const {ids, updates} = normalizeForPutCategories(categories, oldIndex, newIndex );
       dispatch( apiPutCategories(ids, updates) );
     }
   }
