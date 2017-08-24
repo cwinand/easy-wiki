@@ -6,7 +6,8 @@ import { apiDeleteCategory, apiPutCategories } from '../actions/categories';
 
 const mapStateToProps = ( state ) => {
   return {
-    categories: state.categories.items.sort( ( a, b ) => a.order - b.order )
+    categories: state.categories.items.sort( ( a, b ) => a.order - b.order ),
+    isFetching: state.categories.isFetching
   }
 }
 

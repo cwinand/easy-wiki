@@ -25,7 +25,7 @@ const SortableCategoryList = SortableContainer( ( { categories, onRemoveCategory
   );
 });
 
-const CategoryList = SortableContainer( ( { categories, onRemoveCategory, onMoveCategory } ) => {
+const CategoryList = SortableContainer( ( { categories, isFetching, onRemoveCategory, onMoveCategory } ) => {
 
   const handleRemoveCategory = ( id, order ) => {
     onRemoveCategory( id, order );
@@ -43,6 +43,7 @@ const CategoryList = SortableContainer( ( { categories, onRemoveCategory, onMove
       categories={ categories }
       onRemoveCategory={ handleRemoveCategory }
       onSortEnd={ handleMoveCategory } />
+    <p>{ isFetching ? "Loading..." : "" }</p>
     <AddCategory />
     </div>
   );
