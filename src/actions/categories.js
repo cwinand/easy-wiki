@@ -133,7 +133,7 @@ export const apiDeleteCategory = ( id ) => {
     dispatch( categoriesRequest() );
     return axios.delete( 'http://localhost:3002/api/categories/' + id )
       .then( response => {
-        dispatch( deleteCategorySuccess( response.data.id ) );
+        dispatch( deleteCategorySuccess( id ) );
       }, error => {
         dispatch( deleteCategoryFailure( error ) )
       })
