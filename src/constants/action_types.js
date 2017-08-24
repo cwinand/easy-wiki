@@ -2,6 +2,7 @@
  * Category Action Types
  */
 
+export const SELECT_CATEGORY    = "SELECT_CATEGORY";
 export const CATEGORIES_REQUEST = "CATEGORIES_REQUEST";
 
 // GET

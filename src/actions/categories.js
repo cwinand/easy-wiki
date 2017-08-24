@@ -3,6 +3,13 @@ import { normalizeById } from '../utils/categories'
 
 import axios from 'axios';
 
+export const selectCategory = ( id ) => {
+  return {
+    type: types.SELECT_CATEGORY,
+    id
+  }
+}
+
 export const categoriesRequest = () => {
   return {
     type: types.CATEGORIES_REQUEST,

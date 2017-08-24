@@ -1,16 +1,28 @@
 import React from 'react';
-import { SortableElement } from 'react-sortable-hoc';
+import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 
-const CategoryItem = SortableElement( ( { category, onRemoveCategory } ) => {
+const DragHandle = SortableHandle( () => <span>:::</span> )
+
+const CategoryItem = SortableElement( ( { category, selected, onSelectCategory, onRemoveCategory } ) => {
   const { title, order, id } = category;
+
+  const handleSelectCategory = () => {
+    onSelectCategory( id )
+  }
 
   const handleRemoveCategory = () => {
     onRemoveCategory( id );
   }
 
+  const selectedStyle = () => {
+    const border = selected === id ? '1px solid red':'none';
+    return { border }
+  }
+
   return(
-    <li>{ title }, order: { order }, id: { id }
-    <button onClick={ handleRemoveCategory }>Remove</button>
+    <li onClick={ handleSelectCategory } style={selectedStyle()}>{ title }, order: { order }, id: { id }
+      <button onClick={ handleRemoveCategory }>Remove</button>
+      <DragHandle />
     </li>
   );
 });

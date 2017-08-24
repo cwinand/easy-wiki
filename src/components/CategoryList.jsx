@@ -5,7 +5,13 @@ import { SortableContainer } from 'react-sortable-hoc';
 import CategoryItem from './CategoryItem'
 import AddCategory from '../containers/AddCategory'
 
-const SortableCategoryList = SortableContainer( ( { categories, onRemoveCategory } ) => {
+const SortableCategoryList = SortableContainer( ( props ) => {
+  const { categories, selected } = props;
+  const { onSelectCategory, onRemoveCategory } = props;
+
+  const handleSelectCategory = ( id ) => {
+    onSelectCategory( id );
+  }
 
   const handleRemoveCategory = ( id, order ) => {
     onRemoveCategory( id, order );
@@ -13,19 +19,27 @@ const SortableCategoryList = SortableContainer( ( { categories, onRemoveCategory
 
   return(
     <ol>
-    { categories.map( ( category, index  ) => (
-      <CategoryItem
-        key={ category.id }
-        index={ index }
-        category={ category }
-        onRemoveCategory={ handleRemoveCategory } />
-    )
-    )}
+      { categories.map( ( category, index  ) => (
+        <CategoryItem
+          key={ category.id }
+          index={ index }
+          category={ category }
+          selected={ selected }
+          onSelectCategory={ handleSelectCategory }
+          onRemoveCategory={ handleRemoveCategory } />
+      )
+      )}
     </ol>
   );
 });
 
-const CategoryList = SortableContainer( ( { categories, isFetching, onRemoveCategory, onMoveCategory } ) => {
+const CategoryList = ( props ) => {
+  const { isFetching, categories, selected } = props;
+  const { onSelectCategory, onRemoveCategory, onMoveCategory } = props;
+
+  const handleSelectCategory = ( id ) => {
+    onSelectCategory( id );
+  }
 
   const handleRemoveCategory = ( id, order ) => {
     onRemoveCategory( id, order );
@@ -39,14 +53,17 @@ const CategoryList = SortableContainer( ( { categories, isFetching, onRemoveCate
 
   return(
     <div>
-    <SortableCategoryList
-      categories={ categories }
-      onRemoveCategory={ handleRemoveCategory }
-      onSortEnd={ handleMoveCategory } />
-    <p>{ isFetching ? "Loading..." : "" }</p>
-    <AddCategory />
+      <SortableCategoryList
+        categories={ categories }
+        selected={ selected }
+        onSelectCategory={ handleSelectCategory }
+        onRemoveCategory={ handleRemoveCategory }
+        useDragHandle={ true }
+        onSortEnd={ handleMoveCategory } />
+      <p>{ isFetching ? "Loading..." : "" }</p>
+      <AddCategory />
     </div>
-  );
-});
+  )
+}
 
 export default CategoryList;

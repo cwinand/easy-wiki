@@ -2,17 +2,21 @@ import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
 import { normalizeForPutCategories } from '../utils/categories';
-import { apiDeleteCategory, apiPutCategories } from '../actions/categories';
+import { selectCategory, apiDeleteCategory, apiPutCategories } from '../actions/categories';
 
 const mapStateToProps = ( state ) => {
   return {
     categories: state.categories.items.sort( ( a, b ) => a.order - b.order ),
-    isFetching: state.categories.isFetching
+    isFetching: state.categories.isFetching,
+    selected: state.categories.selected
   }
 }
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
+    onSelectCategory: ( id ) => {
+      dispatch( selectCategory( id ) );
+    },
     onRemoveCategory: ( id, order ) => {
       dispatch( apiDeleteCategory( id, order ) );
     },
