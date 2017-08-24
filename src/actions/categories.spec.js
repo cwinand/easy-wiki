@@ -143,7 +143,7 @@ describe( 'Asynchronous category functions', () => {
 
     nock( 'http://localhost:3002' )
       .delete( '/api/categories/1' )
-      .reply( 200, { id: 1 } )
+      .reply( 204 )
 
     const store = mockStore( { items: [] } )
 
