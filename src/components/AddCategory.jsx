@@ -1,19 +1,38 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import classNames from 'classnames';
 
-const AddCategory = ( { onAddCategory } ) => {
+const AddCategory = ( { isFormShown, onAddCategory, onChangeFormVisibility } ) => {
   let input;
+  const formClasses = classNames({ 'show': isFormShown })
 
   const handleSubmit = ( e ) => {
-      e.preventDefault();
-      onAddCategory( input.value );
-      input.value = "";
-    }
+    e.preventDefault();
+    onAddCategory( input.value );
+    onChangeFormVisibility( false )
+    input.value = "";
+  }
+
+  const showForm = ( e ) => {
+    const inputEl = e.target.parentElement.querySelector('input[type=text]')
+    onChangeFormVisibility( true )
+    // Quick timeout to ensure the form has been shown
+    setTimeout( () => inputEl.focus(), 5 )
+  }
+
+  const hideForm = ( e ) => {
+    e.preventDefault()
+    onChangeFormVisibility( false )
+  }
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <input type="text" ref={ node => input = node } />
-    </form>
+    <div className="add-category">
+      <button onClick={ showForm }><i className="fa fa-plus fa-lg"></i> Add Category</button>
+      <form className={ formClasses } onSubmit={ handleSubmit }>
+        <input type="text" ref={ node => input = node } />
+        <input type="submit" />
+        <button onClick={ hideForm }>Cancel</button>
+      </form>
+    </div>
   );
 }
 

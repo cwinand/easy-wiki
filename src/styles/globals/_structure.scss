@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+}
+
+.header {
+}
+
+.main {
+}
+
+.left-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-bar {
+}
+
+.footer {
+}

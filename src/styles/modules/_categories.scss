@@ -1,0 +1,47 @@
+.category-list {
+
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px;
+
+  &.active {
+    background-color: lightgray;
+  }
+
+  * {
+    cursor: pointer;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  .controls {
+  }
+}
+
+.add-category {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  padding: 20px;
+
+  button {
+    cursor: pointer;
+  }
+
+  form {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+}

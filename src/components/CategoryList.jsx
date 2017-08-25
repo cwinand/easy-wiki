@@ -18,7 +18,7 @@ const SortableCategoryList = SortableContainer( ( props ) => {
   }
 
   return(
-    <ol>
+    <ul className="navigation category-list">
       { categories.map( ( category, index  ) => (
         <CategoryItem
           key={ category.id }
@@ -29,7 +29,7 @@ const SortableCategoryList = SortableContainer( ( props ) => {
           onRemoveCategory={ handleRemoveCategory } />
       )
       )}
-    </ol>
+    </ul>
   );
 });
 
@@ -52,7 +52,7 @@ const CategoryList = ( props ) => {
   }
 
   return(
-    <div>
+    <div className="left-bar">
       <SortableCategoryList
         categories={ categories }
         selected={ selected }
@@ -60,8 +60,8 @@ const CategoryList = ( props ) => {
         onRemoveCategory={ handleRemoveCategory }
         useDragHandle={ true }
         onSortEnd={ handleMoveCategory } />
-      <p>{ isFetching ? "Loading..." : "" }</p>
       <AddCategory />
+      <p>{ isFetching ? "Loading..." : "" }</p>
     </div>
   )
 }

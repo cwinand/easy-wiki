@@ -2,6 +2,8 @@
  * Category Action Types
  */
 
+export const CHANGE_FORM_VISIBILITY = "CHANGE_FORM_VISIBILITY";
+
 export const SELECT_CATEGORY    = "SELECT_CATEGORY";
 export const CATEGORIES_REQUEST = "CATEGORIES_REQUEST";
 

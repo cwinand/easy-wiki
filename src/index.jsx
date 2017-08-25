@@ -4,6 +4,9 @@ import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 
+import './styles/styles.scss';
+import 'font-awesome/scss/font-awesome.scss';
+
 import { apiGetCategories } from './actions/categories';
 
 import App from './components/App';

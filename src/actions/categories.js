@@ -10,6 +10,13 @@ export const selectCategory = ( id ) => {
   }
 }
 
+export const changeFormVisibility = ( status ) => {
+  return {
+    type: types.CHANGE_FORM_VISIBILITY,
+    status
+  }
+}
+
 export const categoriesRequest = () => {
   return {
     type: types.CATEGORIES_REQUEST,

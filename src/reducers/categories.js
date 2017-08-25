@@ -2,12 +2,18 @@ import * as types from '../constants/action_types';
 
 const initialState = {
   isFetching: false,
+  isFormShown: false,
   selected: undefined,
   items: []
 }
 
 const categories = ( state = initialState, action ) => {
   switch ( action.type ) {
+    case types.CHANGE_FORM_VISIBILITY:
+      return {
+        ...state,
+        isFormShown: action.status
+      }
     case types.SELECT_CATEGORY:
       return {
         ...state,

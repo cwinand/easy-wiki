@@ -1,10 +1,16 @@
 import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
+import classNames from 'classnames';
 
-const DragHandle = SortableHandle( () => <span>:::</span> )
+const DragHandle = SortableHandle( () => <i className="fa fa-sort fa-fw"></i> )
 
 const CategoryItem = SortableElement( ( { category, selected, onSelectCategory, onRemoveCategory } ) => {
   const { title, order, id } = category;
+
+  const classes = classNames({
+    'active': selected === id,
+    'category-item': true
+  })
 
   const handleSelectCategory = () => {
     onSelectCategory( id )
@@ -14,15 +20,13 @@ const CategoryItem = SortableElement( ( { category, selected, onSelectCategory, 
     onRemoveCategory( id );
   }
 
-  const selectedStyle = () => {
-    const border = selected === id ? '1px solid red':'none';
-    return { border }
-  }
-
   return(
-    <li onClick={ handleSelectCategory } style={selectedStyle()}>{ title }, order: { order }, id: { id }
-      <button onClick={ handleRemoveCategory }>Remove</button>
-      <DragHandle />
+    <li onClick={ handleSelectCategory } className={ classes }>
+      <a href="#">{ title }, order: { order }, id: { id }</a>
+      <div className="controls">
+        <button onClick={ handleRemoveCategory }>Remove</button>
+        <DragHandle />
+      </div>
     </li>
   );
 });
