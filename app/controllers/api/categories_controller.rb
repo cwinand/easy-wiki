@@ -1,5 +1,5 @@
 class Api::CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :update, :destroy]
+  before_action :set_category, only: [:show, :show_pages, :update, :destroy]
 
   # GET /categories
   def index
@@ -11,6 +11,11 @@ class Api::CategoriesController < ApplicationController
   # GET /categories/1
   def show
     render json: @category
+  end
+
+  # GET /categories/1/pages
+  def show_pages
+    render json: @category.pages
   end
 
   # POST /categories
