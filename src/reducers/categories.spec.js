@@ -2,6 +2,42 @@ import categories from './categories';
 import * as types from '../constants/action_types';
 
 describe( 'Categories reducer', () => {
+  test( 'sets isFormShown to true', () => {
+    const oldState = {
+      isFormShown: false
+    }
+    const newState = categories( oldState, {
+      type: types.CHANGE_FORM_VISIBILITY,
+      status: true
+    })
+
+    expect( newState.isFormShown ).toBe( true )
+  })
+
+  test( 'sets isFormShown to false', () => {
+    const oldState = {
+      isFormShown: true
+    }
+    const newState = categories( oldState, {
+      type: types.CHANGE_FORM_VISIBILITY,
+      status: false
+    })
+
+    expect( newState.isFormShown ).toBe( false )
+  })
+
+  test( 'sets selected to the id of the selected category', () => {
+    const oldState = {
+      selected: undefined
+    }
+    const newState = categories( oldState, {
+      type: types.SELECT_CATEGORY,
+      id: 1
+    })
+
+    expect( newState.selected ).toBe( 1 )
+  })
+
   test( 'sets isFetching to true', () => {
     const oldState = {
       isFetching: false,

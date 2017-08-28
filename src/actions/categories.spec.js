@@ -13,6 +13,29 @@ const mockStore = configureMockStore( [ thunkMiddleware ] )
 
 describe( 'Synchronous category actions', () => {
 
+  test( 'should create an action to select a single category', () => {
+    const expectedAction = {
+      type: types.SELECT_CATEGORY,
+      id: 1
+    }
+
+    expect( actions.selectCategory( 1 ) ).toEqual( expectedAction )
+  })
+
+  test( 'should create an action to show/hide the add category form', () => {
+    const expectedShowAction = {
+      type: types.CHANGE_FORM_VISIBILITY,
+      status: true
+    }
+    const expectedHideAction = {
+      type: types.CHANGE_FORM_VISIBILITY,
+      status: false
+    }
+
+    expect( actions.changeFormVisibility( true ) ).toEqual( expectedShowAction )
+    expect( actions.changeFormVisibility( false ) ).toEqual( expectedHideAction )
+  })
+
   test( 'should create an action to indicate a categories API request is ocurring', () => {
     const expectedAction = {
       type: types.CATEGORIES_REQUEST
