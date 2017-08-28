@@ -10,7 +10,7 @@ class Api::PagesController < ApplicationController
 
   # GET /pages/1
   def show
-    render json: @page
+    render json: @page, :include => :sections
   end
 
   # POST /pages
@@ -41,7 +41,7 @@ class Api::PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      @page = Page.includes(:sections).find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

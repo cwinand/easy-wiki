@@ -4,6 +4,8 @@ import CategoryListComponent from '../components/CategoryList';
 import { normalizeForPutCategories } from '../utils/categories';
 import { selectCategory, apiDeleteCategory, apiPutCategories } from '../actions/categories';
 
+import { apiGetPage } from '../actions/pages';
+
 const mapStateToProps = ( state ) => {
   return {
     categories: state.categories.items.sort( ( a, b ) => a.order - b.order ),
@@ -23,6 +25,9 @@ const mapDispatchToProps = ( dispatch ) => {
     onMoveCategory: ( oldIndex, newIndex, categories ) => {
       const { ids, updates } = normalizeForPutCategories( categories, oldIndex, newIndex  );
       dispatch( apiPutCategories( ids, updates ) );
+    },
+    onSelectPage: ( id ) => {
+      dispatch( apiGetPage( id ) )
     }
   }
 }

@@ -3,9 +3,9 @@ class Api::CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.all
+    @categories = Category.includes(:pages).all
 
-    render json: @categories
+    render json: @categories, :include => { :pages => { :except => [:created_at, :updated_at ] } }
   end
 
   # GET /categories/1
@@ -59,7 +59,7 @@ class Api::CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.includes(:pages).find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

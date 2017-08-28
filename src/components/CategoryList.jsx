@@ -7,7 +7,7 @@ import AddCategory from '../containers/AddCategory'
 
 const SortableCategoryList = SortableContainer( ( props ) => {
   const { categories, selected } = props;
-  const { onSelectCategory, onRemoveCategory } = props;
+  const { onSelectCategory, onRemoveCategory, onSelectPage } = props;
 
   const handleSelectCategory = ( id ) => {
     onSelectCategory( id );
@@ -15,6 +15,10 @@ const SortableCategoryList = SortableContainer( ( props ) => {
 
   const handleRemoveCategory = ( id, order ) => {
     onRemoveCategory( id, order );
+  }
+
+  const handleSelectPage = ( id ) => {
+    onSelectPage( id )
   }
 
   return(
@@ -26,7 +30,8 @@ const SortableCategoryList = SortableContainer( ( props ) => {
           category={ category }
           selected={ selected }
           onSelectCategory={ handleSelectCategory }
-          onRemoveCategory={ handleRemoveCategory } />
+          onRemoveCategory={ handleRemoveCategory }
+          onSelectPage={ handleSelectPage } />
       )
       )}
     </ul>
@@ -35,7 +40,7 @@ const SortableCategoryList = SortableContainer( ( props ) => {
 
 const CategoryList = ( props ) => {
   const { isFetching, categories, selected } = props;
-  const { onSelectCategory, onRemoveCategory, onMoveCategory } = props;
+  const { onSelectCategory, onRemoveCategory, onMoveCategory, onSelectPage } = props;
 
   const handleSelectCategory = ( id ) => {
     onSelectCategory( id );
@@ -43,6 +48,10 @@ const CategoryList = ( props ) => {
 
   const handleRemoveCategory = ( id, order ) => {
     onRemoveCategory( id, order );
+  }
+
+  const handleSelectPage = ( id ) => {
+    onSelectPage( id )
   }
 
   const handleMoveCategory = ( { oldIndex, newIndex } ) => {
@@ -58,6 +67,7 @@ const CategoryList = ( props ) => {
         selected={ selected }
         onSelectCategory={ handleSelectCategory }
         onRemoveCategory={ handleRemoveCategory }
+        onSelectPage={ handleSelectPage }
         useDragHandle={ true }
         onSortEnd={ handleMoveCategory } />
       <AddCategory />
