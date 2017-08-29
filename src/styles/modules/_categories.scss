@@ -66,12 +66,8 @@
 
 }
 
-.add-category {
+.category-form {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-
-  padding: 20px;
 
   button {
     cursor: pointer;
@@ -84,4 +80,13 @@
       display: block;
     }
   }
+}
+
+.edit-category {
+}
+
+.add-category {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 20px;
 }

@@ -25,7 +25,7 @@ const AddCategory = ( { isFormShown, onAddCategory, onChangeFormVisibility } ) =
   }
 
   return (
-    <div className="add-category">
+    <div className="add-category category-form">
       <button onClick={ showForm }><i className="fa fa-plus fa-lg"></i> Add Category</button>
       <form className={ formClasses } onSubmit={ handleSubmit }>
         <input type="text" ref={ node => input = node } />

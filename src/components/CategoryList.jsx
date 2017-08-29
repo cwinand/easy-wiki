@@ -2,24 +2,11 @@ import React from 'react';
 
 import { SortableContainer } from 'react-sortable-hoc';
 
-import CategoryItem from './CategoryItem'
+import CategoryItem from '../containers/CategoryItem'
 import AddCategory from '../containers/AddCategory'
 
 const SortableCategoryList = SortableContainer( ( props ) => {
   const { categories, selected } = props;
-  const { onSelectCategory, onRemoveCategory, onSelectPage } = props;
-
-  const handleSelectCategory = ( id ) => {
-    onSelectCategory( id );
-  }
-
-  const handleRemoveCategory = ( id, order ) => {
-    onRemoveCategory( id, order );
-  }
-
-  const handleSelectPage = ( id ) => {
-    onSelectPage( id )
-  }
 
   return(
     <ul className="navigation category-list">
@@ -28,10 +15,7 @@ const SortableCategoryList = SortableContainer( ( props ) => {
           key={ category.id }
           index={ index }
           category={ category }
-          selected={ selected }
-          onSelectCategory={ handleSelectCategory }
-          onRemoveCategory={ handleRemoveCategory }
-          onSelectPage={ handleSelectPage } />
+          selected={ selected } />
       )
       )}
     </ul>
@@ -40,19 +24,7 @@ const SortableCategoryList = SortableContainer( ( props ) => {
 
 const CategoryList = ( props ) => {
   const { isFetching, categories, selected } = props;
-  const { onSelectCategory, onRemoveCategory, onMoveCategory, onSelectPage } = props;
-
-  const handleSelectCategory = ( id ) => {
-    onSelectCategory( id );
-  }
-
-  const handleRemoveCategory = ( id, order ) => {
-    onRemoveCategory( id, order );
-  }
-
-  const handleSelectPage = ( id ) => {
-    onSelectPage( id )
-  }
+  const {  onMoveCategory } = props;
 
   const handleMoveCategory = ( { oldIndex, newIndex } ) => {
     if ( oldIndex !== newIndex ) {
@@ -65,9 +37,6 @@ const CategoryList = ( props ) => {
       <SortableCategoryList
         categories={ categories }
         selected={ selected }
-        onSelectCategory={ handleSelectCategory }
-        onRemoveCategory={ handleRemoveCategory }
-        onSelectPage={ handleSelectPage }
         useDragHandle={ true }
         onSortEnd={ handleMoveCategory } />
       <AddCategory />

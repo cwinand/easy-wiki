@@ -2,9 +2,8 @@ import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
 import { normalizeForPutCategories } from '../utils/categories';
-import { selectCategory, apiDeleteCategory, apiPutCategories } from '../actions/categories';
+import { apiPutCategories } from '../actions/categories';
 
-import { apiGetPage } from '../actions/pages';
 
 const mapStateToProps = ( state ) => {
   return {
@@ -16,18 +15,9 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-    onSelectCategory: ( id ) => {
-      dispatch( selectCategory( id ) );
-    },
-    onRemoveCategory: ( id, order ) => {
-      dispatch( apiDeleteCategory( id, order ) );
-    },
     onMoveCategory: ( oldIndex, newIndex, categories ) => {
       const { ids, updates } = normalizeForPutCategories( categories, oldIndex, newIndex  );
       dispatch( apiPutCategories( ids, updates ) );
-    },
-    onSelectPage: ( id ) => {
-      dispatch( apiGetPage( id ) )
     }
   }
 }
