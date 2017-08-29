@@ -8,13 +8,19 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: 20px;
+  margin: 20px;
+  padding-left: 13px;
 
   &.active {
-    background-color: lightgray;
+    border-left: 3px solid lightblue;
+    padding-left: 10px;
 
-    .pages-list-container {
-      display: block;
+    > a {
+      font-weight: 600;
+    }
+
+    .expanded-items {
+      display: flex;
     }
   }
 
@@ -27,14 +33,27 @@
     text-decoration: none;
   }
 
+  .expanded-items {
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+
+    > * {
+     width: 100%;
+     padding-top: 10px;
+    }
+  }
+
   .controls {
+    button {
+      margin-right: 5px;
+    }
   }
 
   .pages-list-container {
-    display: none;
-
     p {
-      margin: 10px 0 3px;
+      margin: 0 0 3px;
       font-weight: 600;
     }
 

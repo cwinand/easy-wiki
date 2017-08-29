@@ -22,18 +22,24 @@ const CategoryItem = SortableElement( ( { category, selected, onSelectCategory, 
     onRemoveCategory( id )
   }
 
+  const handleEditCategory = () => {
+  }
+
   const handleSelectPage = ( id ) => {
     onSelectPage( id )
   }
 
   return(
     <li onClick={ handleSelectCategory } className={ classes }>
-      <a href="#">{ title }, order: { order }, id: { id }</a>
-      <div className="controls">
-        <button onClick={ handleRemoveCategory }>Remove</button>
-        <DragHandle />
+      <a href="#">{ title }</a>
+      <DragHandle />
+      <div className="expanded-items">
+        <div className="controls">
+          <button onClick={ handleEditCategory }><i className="fa fa-pencil"></i> Edit Category</button>
+          <button onClick={ handleRemoveCategory }><i className="fa fa-minus"></i> Remove Category</button>
+        </div>
+        <PageList pages={ pages } onSelectPage={ handleSelectPage }/>
       </div>
-      <PageList pages={ pages } onSelectPage={ handleSelectPage }/>
     </li>
   );
 });
