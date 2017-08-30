@@ -1,13 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const AddCategory = ( { isFormShown, onAddCategory, onChangeFormVisibility } ) => {
+const CategoryForm = ( { isFormShown, onSubmitForm, onChangeFormVisibility } ) => {
   let input;
   const formClasses = classNames({ 'show': isFormShown })
 
   const handleSubmit = ( e ) => {
     e.preventDefault();
-    onAddCategory( input.value );
+    onSubmitForm( input.value );
     onChangeFormVisibility( false )
     input.value = "";
   }
@@ -37,4 +37,4 @@ const AddCategory = ( { isFormShown, onAddCategory, onChangeFormVisibility } ) =
 }
 
 
-export default AddCategory;
+export default CategoryForm;

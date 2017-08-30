@@ -3,7 +3,7 @@ import React from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 
 import CategoryItem from '../containers/CategoryItem'
-import AddCategory from '../containers/AddCategory'
+import CategoryForm from '../containers/CategoryForm'
 
 const SortableCategoryList = SortableContainer( ( props ) => {
   const { categories, selected } = props;
@@ -39,7 +39,7 @@ const CategoryList = ( props ) => {
         selected={ selected }
         useDragHandle={ true }
         onSortEnd={ handleMoveCategory } />
-      <AddCategory />
+      <CategoryForm />
       <p>{ isFetching ? "Loading..." : "" }</p>
     </div>
   )

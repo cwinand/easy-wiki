@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AddCategoryComponent from '../components/AddCategory';
+import CategoryFormComponent from '../components/CategoryForm';
 import { apiPostCategory, changeFormVisibility } from '../actions/categories';
 
 const mapStateToProps = ( state ) => {
@@ -11,7 +11,7 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-    onAddCategory: ( title ) => {
+    onSubmitForm: ( title ) => {
       dispatch( apiPostCategory( title ) );
     },
     onChangeFormVisibility: ( status ) => {
@@ -21,9 +21,9 @@ const mapDispatchToProps = ( dispatch ) => {
 }
 
 
-const AddCategory = connect(
+const CategoryForm = connect(
   mapStateToProps,
   mapDispatchToProps
-)( AddCategoryComponent );
+)( CategoryFormComponent );
 
-export default AddCategory;
+export default CategoryForm;
