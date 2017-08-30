@@ -26,8 +26,8 @@ const CategoryItem = SortableElement( ( { category, ...rest} ) => {
   const handleSubmitForm = ( title ) => { onUpdateCategory( id, title ) }
 
   return(
-    <li onClick={ handleSelectCategory } className={ classes }>
-      <a href="#">{ title }</a>
+    <li className={ classes }>
+      <a onClick={ handleSelectCategory } href="#">{ title }</a>
       <DragHandle />
       <div className="expanded-items">
         <div className="controls">
