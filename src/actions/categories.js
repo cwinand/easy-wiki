@@ -50,21 +50,6 @@ export const postCategoryFailure = ( error ) => {
     error
   }
 }
-
-export const putCategorySuccess = ( data ) => {
-  return {
-    type: types.PUT_CATEGORY_SUCCESS,
-    data
-  }
-}
-
-export const putCategoryFailure = ( error ) => {
-  return {
-    type: types.PUT_CATEGORY_FAILURE,
-    error
-  }
-}
-
 export const putCategoriesSuccess = ( data ) => {
   return {
     type: types.PUT_CATEGORIES_SUCCESS,
@@ -116,19 +101,6 @@ export const apiPostCategory = ( title ) => {
       })
   }
 }
-
-export const apiPutCategory = ( id, updates ) => {
-  return dispatch => {
-    dispatch( categoriesRequest() );
-    return axios.put( 'http://localhost:3002/api/categories/' + id, updates )
-      .then( response => {
-        dispatch( putCategorySuccess( response.data ) );
-      }, error => {
-        dispatch( putCategoryFailure( error ) )
-      })
-  }
-}
-
 export const apiPutCategories = ( ids, updates ) => {
   return dispatch => {
     dispatch( categoriesRequest() );
