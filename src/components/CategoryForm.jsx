@@ -14,25 +14,17 @@ const CategoryForm = ( { isFormShown, onSubmitForm, onChangeFormVisibility } ) =
     input.value = "";
   }
 
-  const showForm = ( e ) => {
-    const inputEl = e.target.parentElement.querySelector('input[type=text]')
-    onChangeFormVisibility( true )
-    // Quick timeout to ensure the form has been shown
-    setTimeout( () => inputEl.focus(), 5 )
-  }
-
-  const hideForm = ( e ) => {
+  const handleHideForm = ( e ) => {
     e.preventDefault()
     onChangeFormVisibility( false )
   }
 
   return (
-    <div className="add-category category-form">
-      <button onClick={ showForm }><i className="fa fa-plus fa-lg"></i> Add Category</button>
+    <div className="category-form">
       <form className={ formClasses } onSubmit={ handleSubmit }>
         <input type="text" ref={ node => input = node } />
         <input type="submit" />
-        <button onClick={ hideForm }>Cancel</button>
+        <button onClick={ handleHideForm }>Cancel</button>
       </form>
     </div>
   );

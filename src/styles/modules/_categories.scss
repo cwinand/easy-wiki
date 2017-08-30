@@ -1,5 +1,18 @@
-.category-list {
+.left-bar {
+  button {
+    cursor: pointer;
 
+    &.add-category-button {
+      width: 150px;
+      margin-left: 20px;
+    }
+  }
+
+  > .category-form {
+    margin-left: 20px;
+  }
+}
+.category-list {
 }
 
 .category-item {
@@ -63,22 +76,9 @@
       list-style: none;
     }
   }
-
 }
 
 .category-form {
   display: flex;
-
-  button {
-    cursor: pointer;
-  }
 }
 
-.edit-category {
-}
-
-.add-category {
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  padding: 20px;
-}

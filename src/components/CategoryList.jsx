@@ -3,7 +3,7 @@ import React from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 
 import CategoryItem from '../containers/CategoryItem'
-import CategoryForm from '../containers/CategoryForm'
+import CategoryForm from './CategoryForm'
 
 const SortableCategoryList = SortableContainer( ( props ) => {
   const { categories, selected } = props;
@@ -24,7 +24,7 @@ const SortableCategoryList = SortableContainer( ( props ) => {
 
 const CategoryList = ( props ) => {
   const { isFetching, categories, selected, isFormShown } = props;
-  const {  onMoveCategory, onChangeFormVisibility } = props;
+  const { onCreateCategory, onMoveCategory, onChangeFormVisibility } = props;
 
   const handleMoveCategory = ( { oldIndex, newIndex } ) => {
     if ( oldIndex !== newIndex ) {
@@ -33,6 +33,9 @@ const CategoryList = ( props ) => {
   }
 
   const handleChangeFormVisibility = ( status ) => onChangeFormVisibility( status )
+  const handleShowForm = () => onChangeFormVisibility( true )
+
+  const handleSubmitForm = ( title ) => onCreateCategory( title )
 
   return(
     <div className="left-bar">
@@ -41,7 +44,15 @@ const CategoryList = ( props ) => {
         selected={ selected }
         useDragHandle={ true }
         onSortEnd={ handleMoveCategory } />
-      <CategoryForm isFormShown={ isFormShown } onChangeFormVisibility={ handleChangeFormVisibility } />
+
+      <CategoryForm
+        isFormShown={ isFormShown }
+        onChangeFormVisibility={ handleChangeFormVisibility }
+        onSubmitForm={ handleSubmitForm } />
+
+      <button onClick={ handleShowForm } className="add-category-button">
+        <i className="fa fa-plus fa-lg"></i> Add Category
+      </button>
       <p>{ isFetching ? "Loading..." : "" }</p>
     </div>
   )
