@@ -19,7 +19,10 @@ class Api::CategoriesController < ApplicationController
     @category.order = Category.all.count
 
     if @category.save
-      render json: @category, status: :created, location: @api_category
+      render json: @category, 
+        status: :created,
+        location: @api_category,
+        :include => { :pages => { :except => [:created_at, :updated_at ] } }
     else
       render json: @category.errors, status: :unprocessable_entity
     end
@@ -28,7 +31,7 @@ class Api::CategoriesController < ApplicationController
   # PATCH/PUT /categories/1
   def update
     if @category.update(category_params)
-      render json: @category
+      render json: @category, :include => { :pages => { :except => [:created_at, :updated_at ] } }
     else
       render json: @category.errors, status: :unprocessable_entity
     end
