@@ -1,4 +1,4 @@
-import * as types from '../constants/action_types';
+import * as types from '../constants/categories_types';
 
 const initialState = {
   isFetching: false,

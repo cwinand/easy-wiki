@@ -1,5 +1,5 @@
 import categories from './categories';
-import * as types from '../constants/action_types';
+import * as types from '../constants/categories_types';
 
 describe( 'Categories reducer', () => {
   test( 'sets isFormShown to true', () => {

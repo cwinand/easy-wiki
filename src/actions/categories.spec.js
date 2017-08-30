@@ -1,5 +1,5 @@
 import * as actions from './categories';
-import * as types from '../constants/action_types';
+import * as types from '../constants/categories_types';
 
 import nock from 'nock';
 import axios from 'axios';
