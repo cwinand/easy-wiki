@@ -23,14 +23,16 @@ const SortableCategoryList = SortableContainer( ( props ) => {
 });
 
 const CategoryList = ( props ) => {
-  const { isFetching, categories, selected } = props;
-  const {  onMoveCategory } = props;
+  const { isFetching, categories, selected, isFormShown } = props;
+  const {  onMoveCategory, onChangeFormVisibility } = props;
 
   const handleMoveCategory = ( { oldIndex, newIndex } ) => {
     if ( oldIndex !== newIndex ) {
       onMoveCategory( oldIndex, newIndex, categories )
     }
   }
+
+  const handleChangeFormVisibility = ( status ) => onChangeFormVisibility( status )
 
   return(
     <div className="left-bar">
@@ -39,7 +41,7 @@ const CategoryList = ( props ) => {
         selected={ selected }
         useDragHandle={ true }
         onSortEnd={ handleMoveCategory } />
-      <CategoryForm />
+      <CategoryForm isFormShown={ isFormShown } onChangeFormVisibility={ handleChangeFormVisibility } />
       <p>{ isFetching ? "Loading..." : "" }</p>
     </div>
   )

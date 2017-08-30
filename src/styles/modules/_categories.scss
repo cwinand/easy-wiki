@@ -72,14 +72,6 @@
   button {
     cursor: pointer;
   }
-
-  form {
-    display: none;
-
-    &.show {
-      display: block;
-    }
-  }
 }
 
 .edit-category {

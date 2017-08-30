@@ -3,7 +3,9 @@ import classNames from 'classnames';
 
 const CategoryForm = ( { isFormShown, onSubmitForm, onChangeFormVisibility } ) => {
   let input;
-  const formClasses = classNames({ 'show': isFormShown })
+  const formClasses = classNames({
+    'hide': !isFormShown
+  })
 
   const handleSubmit = ( e ) => {
     e.preventDefault();
