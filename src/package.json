@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "marked": "https://github.com/cwinand/marked"
+  }
+}

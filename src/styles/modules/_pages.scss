@@ -1,0 +1,42 @@
+.main {
+  section {
+    display: flex;
+
+    .input {
+      width: 30%;
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      input[type=text] {
+        margin-bottom: 20px;
+        padding: 3px;
+        font-size: 18px;
+      }
+
+      textarea {
+        margin-bottom: 10px;
+      }
+
+      .controls {
+        align-self: flex-end;
+      }
+
+      input[type=submit],
+      button {
+        width: 150px;
+      }
+    }
+
+    .output {
+      width: 50%;
+
+      h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
