@@ -10,10 +10,10 @@ const categoriesById = ( state = {}, action ) => {
       return action.data.entities.categories
 
     case types.POST_CATEGORY_SUCCESS:
-      const id = action.data.result
+    case types.PUT_CATEGORY_SUCCESS:
       return {
         ...state,
-        [ id ]: action.data.entities.categories[ id ]
+        [ action.data.result ]: action.data.entities.categories[ action.data.result ]
       }
 
     case types.DELETE_CATEGORY_SUCCESS:
@@ -96,16 +96,5 @@ const categories = combineReducers({
   isFetching: categoriesFetching
 })
 
-
-// const categories = ( state = initialState, action ) => {
-//   switch ( action.type ) {
-//     case types.PUT_CATEGORY_SUCCESS:
-//       return {
-//         ...state,
-//         isFetching: false,
-//         items: state.items.map( ( item ) => item.id === action.data.id ? action.data : item )
-//       }
-//   }
-// }
 
 export default categories

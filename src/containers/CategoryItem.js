@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import CategoryItemComponent from '../components/CategoryItem';
 
-import { selectCategory, changeEditVisibility, apiDeleteCategory } from '../actions/categories';
-
-import { apiPutCategory } from '../actions/category'
+import { selectCategory, changeEditVisibility, apiPutCategory, apiDeleteCategory } from '../actions/categories';
 import { apiGetPage } from '../actions/pages';
 
 const mapStateToProps = ( state ) => {
@@ -22,7 +20,7 @@ const mapDispatchToProps = ( dispatch ) => {
       dispatch( selectCategory( id ) );
       dispatch( changeEditVisibility( false ) )
     },
-    onRemoveCategory: ( id, order ) => {
+    onRemoveCategory: ( id ) => {
       dispatch( apiDeleteCategory( id ) );
     },
     onSelectPage: ( id ) => {

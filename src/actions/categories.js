@@ -66,6 +66,21 @@ export const postCategoryFailure = ( error ) => {
     error
   }
 }
+
+export const putCategorySuccess = ( data ) => {
+  return {
+    type: types.PUT_CATEGORY_SUCCESS,
+    data: normalize( data, categoryEntity )
+  }
+}
+
+export const putCategoryFailure = ( error ) => {
+  return {
+    type: types.PUT_CATEGORY_FAILURE,
+    error
+  }
+}
+
 export const putCategoriesSuccess = ( data ) => {
   return {
     type: types.PUT_CATEGORIES_SUCCESS,
@@ -122,6 +137,21 @@ export const apiPostCategory = ( title ) => {
       })
   }
 }
+
+export const apiPutCategory = ( id, title ) => {
+  return dispatch => {
+    dispatch( categoriesFetching( true ) );
+    return axios.put( 'http://localhost:3002/api/categories/' + id, { title } )
+      .then( response => {
+        dispatch( categoriesFetching( false ) );
+        dispatch( putCategorySuccess( response.data ) );
+      }, error => {
+        dispatch( categoriesFetching( false ) );
+        dispatch( putCategoryFailure( error ) )
+      })
+  }
+}
+
 export const apiPutCategories = ( ids, updates, previousCategoryIds ) => {
   return dispatch => {
     dispatch( categoriesFetching( true ) );
@@ -140,7 +170,7 @@ export const apiDeleteCategory = ( id ) => {
   return dispatch => {
     dispatch( categoriesFetching( true ) );
     return axios.delete( 'http://localhost:3002/api/categories/' + id )
-      .then( response => {
+      .then( () => {
         dispatch( categoriesFetching( false ) );
         dispatch( deleteCategorySuccess( id ) );
       }, error => {
