@@ -6,13 +6,13 @@ import { apiPostCategory, apiPutCategories, changeFormVisibility, moveCategory }
 
 
 const mapStateToProps = ( state ) => {
-  const { byId, allIds, isFetching, selected, isFormShown } = state.categories
+  const { byId, allIds, isFetching, selectedCategory, isFormShown } = state.categories
 
   return {
     categoriesById: byId,
     categoryIds: allIds,
     isFetching,
-    selected,
+    selectedCategory,
     isFormShown
   }
 }

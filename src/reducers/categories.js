@@ -49,10 +49,19 @@ const allCategories = ( state = [], action ) => {
   }
 }
 
-const selectedCategory = ( state = null, action ) => {
+const selectedCategory = ( state = {}, action ) => {
   switch ( action.type ) {
     case types.SELECT_CATEGORY:
-      return action.id
+      return {
+        ...state,
+        id: action.id
+      }
+
+    case types.CHANGE_EDIT_VISIBILITY:
+      return {
+        ...state,
+        isFormShown: action.status
+      }
 
     default:
       return state
@@ -82,7 +91,7 @@ const categoriesFetching = ( state = false, action ) => {
 const categories = combineReducers({
   byId: categoriesById,
   allIds: allCategories,
-  selected: selectedCategory,
+  selectedCategory: selectedCategory,
   isFormShown: newCategoryFormVisibility,
   isFetching: categoriesFetching
 })

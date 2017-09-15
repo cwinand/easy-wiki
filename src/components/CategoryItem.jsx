@@ -7,13 +7,12 @@ import CategoryForm from './CategoryForm'
 
 const DragHandle = SortableHandle( () => <i className="fa fa-sort fa-fw"></i> )
 
-const CategoryItem = SortableElement( ( { category, ...rest} ) => {
+const CategoryItem = SortableElement( ( { category, selectedCategory, ...handlers } ) => {
   const { title, id, pages } = category
-  const { isFormShown, selected } = rest
-  const { onUpdateCategory, onSelectCategory, onRemoveCategory, onSelectPage, onChangeFormVisibility } = rest
+  const { onUpdateCategory, onSelectCategory, onRemoveCategory, onSelectPage, onChangeEditVisibility } = handlers
 
   const classes = classNames({
-    'active': selected === id,
+    'active': selectedCategory.id === id,
     'category-item': true
   })
 
@@ -21,8 +20,8 @@ const CategoryItem = SortableElement( ( { category, ...rest} ) => {
   const handleRemoveCategory = () => onRemoveCategory( id )
   const handleSelectPage = ( id ) => onSelectPage( id )
 
-  const handleChangeFormVisibility = ( status ) => { onChangeFormVisibility( status ) }
-  const handleShowForm = () => handleChangeFormVisibility( true )
+  const handleChangeEditVisibility = ( status ) => { onChangeEditVisibility( status ) }
+  const handleShowForm = () => handleChangeEditVisibility( true )
   const handleSubmitForm = ( title ) => { onUpdateCategory( id, title ) }
 
   return(
@@ -32,8 +31,8 @@ const CategoryItem = SortableElement( ( { category, ...rest} ) => {
       <div className="expanded-items">
         <div className="controls">
           <CategoryForm
-            isFormShown={ isFormShown }
-            onChangeFormVisibility={ handleChangeFormVisibility }
+            isFormShown={ selectedCategory.isFormShown }
+            onChangeFormVisibility={ handleChangeEditVisibility }
             onSubmitForm={ handleSubmitForm } />
 
           <button onClick={ handleShowForm }><i className="fa fa-pencil"></i> Edit Category</button>

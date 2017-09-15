@@ -18,6 +18,13 @@ export const changeFormVisibility = ( status ) => {
   }
 }
 
+export const changeEditVisibility = ( status ) => {
+  return {
+    type: types.CHANGE_EDIT_VISIBILITY,
+    status
+  }
+}
+
 export const categoriesFetching = ( status ) => {
   return {
     type: types.CATEGORIES_REQUEST_STATUS,

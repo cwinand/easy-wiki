@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
 import CategoryItemComponent from '../components/CategoryItem';
 
-import { selectCategory, apiDeleteCategory } from '../actions/categories';
-import { changeFormVisibility, apiPutCategory } from '../actions/category'
+import { selectCategory, changeEditVisibility, apiDeleteCategory } from '../actions/categories';
+
+import { apiPutCategory } from '../actions/category'
 import { apiGetPage } from '../actions/pages';
 
 const mapStateToProps = ( state ) => {
-  return {
-    isFormShown: state.category.isFormShown
-  }
+  return {}
 }
 
 const mapDispatchToProps = ( dispatch ) => {
@@ -16,11 +15,12 @@ const mapDispatchToProps = ( dispatch ) => {
     onUpdateCategory: ( id, title ) => {
       dispatch( apiPutCategory( id, title ) )
     },
-    onChangeFormVisibility: ( status ) => {
-      dispatch( changeFormVisibility( status ) )
+    onChangeEditVisibility: ( status ) => {
+      dispatch( changeEditVisibility( status ) )
     },
     onSelectCategory: ( id ) => {
       dispatch( selectCategory( id ) );
+      dispatch( changeEditVisibility( false ) )
     },
     onRemoveCategory: ( id, order ) => {
       dispatch( apiDeleteCategory( id ) );

@@ -2,13 +2,6 @@ import axios from 'axios'
 import * as types from '../constants/categories_types'
 import { categoriesRequest } from './categories'
 
-export const changeFormVisibility = ( status ) => {
-  return {
-    type: types.CHANGE_EDIT_FORM_VISIBILITY,
-    status
-  }
-}
-
 const putCategorySuccess = ( data ) => {
   return {
     type: types.PUT_CATEGORY_SUCCESS,
