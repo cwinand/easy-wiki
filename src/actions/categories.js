@@ -1,7 +1,8 @@
-import * as types from '../constants/categories_types';
-import { normalizeById } from '../utils/categories'
-
+import * as types from '../constants/categories_types'
+import { normalize } from 'normalizr'
 import axios from 'axios';
+
+import { categoryEntity, categoriesSchema } from './schema'
 
 export const selectCategory = ( id ) => {
   return {
@@ -17,16 +18,24 @@ export const changeFormVisibility = ( status ) => {
   }
 }
 
-export const categoriesRequest = () => {
+export const categoriesFetching = ( status ) => {
   return {
-    type: types.CATEGORIES_REQUEST,
+    type: types.CATEGORIES_REQUEST_STATUS,
+    status
+  }
+}
+
+export const moveCategory = ( data ) => {
+  return {
+    type: types.MOVE_CATEGORY,
+    data
   }
 }
 
 export const getCategoriesSuccess = ( data ) => {
   return {
     type: types.GET_CATEGORIES_SUCCESS,
-    data
+    data: normalize( data, categoriesSchema )
   }
 }
 
@@ -40,7 +49,7 @@ export const getCategoriesFailure = ( error ) => {
 export const postCategorySuccess = ( data ) => {
   return {
     type: types.POST_CATEGORY_SUCCESS,
-    data
+    data: normalize( data, categoryEntity )
   }
 }
 
@@ -53,14 +62,15 @@ export const postCategoryFailure = ( error ) => {
 export const putCategoriesSuccess = ( data ) => {
   return {
     type: types.PUT_CATEGORIES_SUCCESS,
-    data
+    data: normalize( data, categoriesSchema )
   }
 }
 
-export const putCategoriesFailure = ( error ) => {
+export const putCategoriesFailure = ( error, previousCategoryIds ) => {
   return {
     type: types.PUT_CATEGORIES_FAILURE,
-    error
+    error,
+    previousCategoryIds
   }
 }
 
@@ -80,11 +90,13 @@ export const deleteCategoryFailure = ( error ) => {
 
 export const apiGetCategories = () => {
   return dispatch => {
-    dispatch( categoriesRequest() );
+    dispatch( categoriesFetching( true ) );
     return axios.get( 'http://localhost:3002/api/categories' )
       .then( response => {
+        dispatch( categoriesFetching( false ) );
         dispatch(getCategoriesSuccess( response.data ));
       }, error => {
+        dispatch( categoriesFetching( false ) );
         dispatch(getCategoriesFailure( error ))
       })
   }
@@ -92,38 +104,41 @@ export const apiGetCategories = () => {
 
 export const apiPostCategory = ( title ) => {
   return dispatch => {
-    dispatch( categoriesRequest() );
+    dispatch( categoriesFetching( true ) );
     return axios.post( 'http://localhost:3002/api/categories', { title } )
       .then( response => {
+        dispatch( categoriesFetching( false ) );
         dispatch(postCategorySuccess( response.data ) );
       }, error => {
+        dispatch( categoriesFetching( false ) );
         dispatch( postCategoryFailure( error ) );
       })
   }
 }
-export const apiPutCategories = ( ids, updates ) => {
+export const apiPutCategories = ( ids, updates, previousCategoryIds ) => {
   return dispatch => {
-    dispatch( categoriesRequest() );
+    dispatch( categoriesFetching( true ) );
     return axios.put( 'http://localhost:3002/api/categories', { ids, updates } )
       .then( response => {
-        const normalizedData = normalizeById( response.data );
-        dispatch( putCategoriesSuccess( normalizedData ) );
+        dispatch( categoriesFetching( false ) );
+        dispatch( putCategoriesSuccess( response.data ) );
       }, error => {
-        dispatch( putCategoriesFailure( error ) )
+        dispatch( categoriesFetching( false ) );
+        dispatch( putCategoriesFailure( error, previousCategoryIds ) )
       })
   }
 }
 
 export const apiDeleteCategory = ( id ) => {
   return dispatch => {
-    dispatch( categoriesRequest() );
+    dispatch( categoriesFetching( true ) );
     return axios.delete( 'http://localhost:3002/api/categories/' + id )
       .then( response => {
+        dispatch( categoriesFetching( false ) );
         dispatch( deleteCategorySuccess( id ) );
       }, error => {
+        dispatch( categoriesFetching( false ) );
         dispatch( deleteCategoryFailure( error ) )
       })
   }
 }
-
-

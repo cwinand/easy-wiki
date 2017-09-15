@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
-import { normalizeForPutCategories } from '../utils/categories';
-import { apiPostCategory, apiPutCategories, changeFormVisibility } from '../actions/categories';
+import { formatForPutCategories } from '../utils/categories';
+import { apiPostCategory, apiPutCategories, changeFormVisibility, moveCategory } from '../actions/categories';
 
 
 const mapStateToProps = ( state ) => {
-  const { items, isFetching, selected, isFormShown } = state.categories
+  const { byId, allIds, isFetching, selected, isFormShown } = state.categories
 
   return {
-    categories: items.sort( ( a, b ) => a.order - b.order ),
+    categoriesById: byId,
+    categoryIds: allIds,
     isFetching,
     selected,
     isFormShown
@@ -24,9 +25,14 @@ const mapDispatchToProps = ( dispatch ) => {
     onChangeFormVisibility: ( status ) => {
       dispatch( changeFormVisibility( status ) )
     },
-    onMoveCategory: ( oldIndex, newIndex, categories ) => {
-      const { ids, updates } = normalizeForPutCategories( categories, oldIndex, newIndex  );
-      dispatch( apiPutCategories( ids, updates ) );
+    onMoveCategory: ( categoriesById, categoryIds, oldIndex, newIndex ) => {
+      const { ids, updates } = formatForPutCategories( categoriesById, categoryIds, oldIndex, newIndex )
+
+      // Pass the original category ids to apiPutCategories in case we need to reset state on failure
+      // Can refactor this to an 'undo' style feature
+      dispatch( apiPutCategories( ids, updates, categoryIds ) );
+
+      dispatch( moveCategory( { categoryIds, oldIndex, newIndex } ) )
     }
   }
 }

@@ -40,7 +40,7 @@ const CategoryItem = SortableElement( ( { category, ...rest} ) => {
           <button onClick={ handleRemoveCategory }><i className="fa fa-minus"></i> Remove Category</button>
 
         </div>
-        <PageList pages={ pages } onSelectPage={ handleSelectPage }/>
+    {/*<PageList pages={ pages } onSelectPage={ handleSelectPage }/>*/}
       </div>
     </li>
   );

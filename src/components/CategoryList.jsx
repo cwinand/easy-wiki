@@ -6,15 +6,15 @@ import CategoryItem from '../containers/CategoryItem'
 import CategoryForm from './CategoryForm'
 
 const SortableCategoryList = SortableContainer( ( props ) => {
-  const { categories, selected } = props;
+  const { categoriesById, categoryIds, selected } = props;
 
   return(
     <ul className="navigation category-list">
-      { categories.map( ( category, index  ) => (
+      { categoryIds.map( ( id, index ) => (
         <CategoryItem
-          key={ category.id }
+          key={ id }
           index={ index }
-          category={ category }
+          category={ categoriesById[ id ] }
           selected={ selected } />
       )
       )}
@@ -23,12 +23,12 @@ const SortableCategoryList = SortableContainer( ( props ) => {
 });
 
 const CategoryList = ( props ) => {
-  const { isFetching, categories, selected, isFormShown } = props;
+  const { isFetching, categoriesById, categoryIds, selected, isFormShown } = props;
   const { onCreateCategory, onMoveCategory, onChangeFormVisibility } = props;
 
   const handleMoveCategory = ( { oldIndex, newIndex } ) => {
     if ( oldIndex !== newIndex ) {
-      onMoveCategory( oldIndex, newIndex, categories )
+      onMoveCategory( categoriesById, categoryIds, oldIndex, newIndex )
     }
   }
 
@@ -40,7 +40,8 @@ const CategoryList = ( props ) => {
   return(
     <div className="left-bar">
       <SortableCategoryList
-        categories={ categories }
+        categoriesById={ categoriesById }
+        categoryIds={ categoryIds }
         selected={ selected }
         useDragHandle={ true }
         onSortEnd={ handleMoveCategory } />
