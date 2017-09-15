@@ -107,6 +107,25 @@ describe( 'Synchronous category actions', () => {
     expect( actions.putCategorySuccess( { id: 1 } ) ).toEqual( expectedAction );
   });
 
+  test( 'should create an action to update multiple categories', () => {
+    const expectedAction = {
+      type: types.PUT_CATEGORIES_SUCCESS,
+      data: normalize( [ { id: 1, order: 1 } ], categoriesSchema )
+    }
+
+    expect( actions.putCategoriesSuccess( [ { id: 1, order: 1 } ] ) ).toEqual( expectedAction );
+  })
+
+  test( 'should create an action to revert multiple categories', () => {
+    const expectedAction = {
+      type: types.PUT_CATEGORIES_FAILURE,
+      error: 'Error',
+      previousCategoryIds: [ 0, 1 ]
+    }
+
+    expect( actions.putCategoriesFailure( 'Error', [ 0, 1 ] ) ).toEqual( expectedAction )
+  })
+
   test( 'should create an action to delete a category', () => {
     const expectedAction = {
       type: types.DELETE_CATEGORY_SUCCESS,
@@ -228,6 +247,35 @@ describe( 'Asynchronous category functions', () => {
     return store.dispatch( actions.apiPutCategories( [ 1 ], [ { id: 1, order: 1 } ] ) ).then( () => {
       expect( store.getActions() ).toEqual( expectedActions )
     })
+  })
+
+  test( 'creates PUT_CATEGORIES_FAILURE when request has failed', () => {
+    const expectedActions = [
+      {
+        type: types.CATEGORIES_REQUEST_STATUS, 
+        status: true
+      },
+      {
+        type: types.CATEGORIES_REQUEST_STATUS, 
+        status: false
+      },
+      {
+        type: types.PUT_CATEGORIES_FAILURE,
+        error: new Error( 'Error' ),
+        previousCategoryIds: [ 2, 1 ]
+      }
+    ]
+
+    nock( 'http://localhost:3002' )
+      .put( '/api/categories' )
+      .replyWithError( 'Error' )
+
+    const store = mockStore( { items: [] } )
+
+    return store.dispatch( actions.apiPutCategories( [ 1, 2 ], [ { id: 1, order: 0 }, { id: 2, order: 1 } ], [ 2, 1 ] ) )
+      .then( () => {
+        expect( store.getActions() ).toEqual( expectedActions )
+      })
   })
 
   test( 'creates DELETE_CATEGORY_SUCCESS when request has succeeded', () => {
