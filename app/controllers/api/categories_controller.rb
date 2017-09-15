@@ -3,7 +3,7 @@ class Api::CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.includes(:pages).all
+    @categories = Category.includes(:pages).all.order( :order )
 
     render json: @categories, :include => { :pages => { :except => [:created_at, :updated_at ] } }
   end
