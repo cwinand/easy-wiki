@@ -70,7 +70,7 @@ const selectedCategory = ( state = {}, action ) => {
 
 const newCategoryFormVisibility = ( state = false, action ) => {
   switch ( action.type ) {
-    case types.CHANGE_FORM_VISIBILITY:
+    case types.CHANGE_NEW_VISIBILITY:
       return action.status
 
     default:

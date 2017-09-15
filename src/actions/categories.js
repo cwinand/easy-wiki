@@ -11,9 +11,9 @@ export const selectCategory = ( id ) => {
   }
 }
 
-export const changeFormVisibility = ( status ) => {
+export const changeNewVisibility = ( status ) => {
   return {
-    type: types.CHANGE_FORM_VISIBILITY,
+    type: types.CHANGE_NEW_VISIBILITY,
     status
   }
 }

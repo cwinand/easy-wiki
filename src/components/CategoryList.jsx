@@ -24,7 +24,7 @@ const SortableCategoryList = SortableContainer( ( props ) => {
 
 const CategoryList = ( props ) => {
   const { isFetching, categoriesById, categoryIds, selectedCategory, isFormShown } = props;
-  const { onCreateCategory, onMoveCategory, onChangeFormVisibility } = props;
+  const { onCreateCategory, onMoveCategory, onChangeNewVisibility } = props;
 
   const handleMoveCategory = ( { oldIndex, newIndex } ) => {
     if ( oldIndex !== newIndex ) {
@@ -32,8 +32,8 @@ const CategoryList = ( props ) => {
     }
   }
 
-  const handleChangeFormVisibility = ( status ) => onChangeFormVisibility( status )
-  const handleShowForm = () => onChangeFormVisibility( true )
+  const handleChangeNewVisibility = ( status ) => onChangeNewVisibility( status )
+  const handleShowForm = () => onChangeNewVisibility( true )
 
   const handleSubmitForm = ( title ) => onCreateCategory( title )
 
@@ -48,7 +48,7 @@ const CategoryList = ( props ) => {
 
       <CategoryForm
         isFormShown={ isFormShown }
-        onChangeFormVisibility={ handleChangeFormVisibility }
+        onChangeFormVisibility={ handleChangeNewVisibility }
         onSubmitForm={ handleSubmitForm } />
 
       <button onClick={ handleShowForm } className="add-category-button">

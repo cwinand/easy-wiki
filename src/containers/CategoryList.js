@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import CategoryListComponent from '../components/CategoryList';
 
 import { formatForPutCategories } from '../utils/categories';
-import { apiPostCategory, apiPutCategories, changeFormVisibility, moveCategory } from '../actions/categories';
+import { apiPostCategory, apiPutCategories, changeNewVisibility, moveCategory } from '../actions/categories';
 
 
 const mapStateToProps = ( state ) => {
@@ -22,8 +22,8 @@ const mapDispatchToProps = ( dispatch ) => {
     onCreateCategory: ( title ) => {
       dispatch( apiPostCategory( title ) )
     },
-    onChangeFormVisibility: ( status ) => {
-      dispatch( changeFormVisibility( status ) )
+    onChangeNewVisibility: ( status ) => {
+      dispatch( changeNewVisibility( status ) )
     },
     onMoveCategory: ( categoriesById, categoryIds, oldIndex, newIndex ) => {
       const { ids, updates } = formatForPutCategories( categoriesById, categoryIds, oldIndex, newIndex )
