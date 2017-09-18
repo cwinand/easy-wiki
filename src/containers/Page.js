@@ -3,7 +3,7 @@ import PageComponent from '../components/Page';
 
 const mapStateToProps = ( state ) => {
   return {
-    data: state.pages.active.data,
+    page: state.pages.byId[ state.pages.active ],
     isFetching: state.pages.isFetching
   }
 }
@@ -15,6 +15,6 @@ const mapDispatchToProps = ( dispatch ) => {
 const Page = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageComponent)
+)( PageComponent )
 
 export default Page

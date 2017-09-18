@@ -116,10 +116,10 @@ export const apiGetCategories = () => {
     return axios.get( 'http://localhost:3002/api/categories' )
       .then( response => {
         dispatch( categoriesFetching( false ) );
-        dispatch(getCategoriesSuccess( response.data ));
+        dispatch( getCategoriesSuccess( response.data ) );
       }, error => {
         dispatch( categoriesFetching( false ) );
-        dispatch(getCategoriesFailure( error ))
+        dispatch( getCategoriesFailure( error ) )
       })
   }
 }

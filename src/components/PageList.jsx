@@ -2,7 +2,7 @@ import React from 'react';
 
 import PageListItem from './PageListItem';
 
-const PageList = ( { pages, onSelectPage } ) => {
+const PageList = ( { pageIds, pagesById, onSelectPage } ) => {
 
   const handleSelectPage = ( id ) => {
     onSelectPage( id )
@@ -11,10 +11,10 @@ const PageList = ( { pages, onSelectPage } ) => {
   return(
     <div className='pages-list-container'>
     <p>Pages:</p>
-    { pages.length > 0 ? '' : 'This category has no pages' }
+    { pageIds.length > 0 ? '' : 'This category has no pages' }
     <ul className='pages-list'>
-      { pages.map( ( page, index ) => (
-        <PageListItem key={ page.id } id={ page.id } title={ page.title } onSelectPage={ handleSelectPage } />
+      { pageIds.map( ( pageId, index ) => (
+        <PageListItem key={ pageId } id={ pageId } pageData={ pagesById[ pageId ] } onSelectPage={ handleSelectPage } />
       )
       ) }
     </ul>

@@ -1,13 +1,13 @@
 import { schema } from 'normalizr'
 
-const section = new schema.Entity( 'sections' )
+export const sectionEntity = new schema.Entity( 'sections' )
 
-const page = new schema.Entity( 'pages', {
-  sections: [ section ]
+export const pageEntity = new schema.Entity( 'pages', {
+  sections: [ sectionEntity ]
 })
 
 export const categoryEntity = new schema.Entity( 'categories', {
-  pages: [ page ]
+  pages: [ pageEntity ]
 })
 
 export const categoriesSchema = [ categoryEntity ]

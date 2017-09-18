@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PageListItem = ( { id, title, onSelectPage } ) => {
+const PageListItem = ( { id, pageData, onSelectPage } ) => {
 
   const handleSelectPage = () => {
     onSelectPage( id )
@@ -8,7 +8,7 @@ const PageListItem = ( { id, title, onSelectPage } ) => {
 
   return(
     <li key={ id }>
-      <a href='#' onClick={ handleSelectPage }>{ title }</a>
+      <a href='#' onClick={ handleSelectPage }>{ pageData.title }</a>
     </li>
   )
 }

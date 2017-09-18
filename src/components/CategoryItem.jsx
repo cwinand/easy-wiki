@@ -2,7 +2,7 @@ import React from 'react';
 import { SortableElement, SortableHandle } from 'react-sortable-hoc';
 import classNames from 'classnames';
 
-import PageList from './PageList'
+import PageList from '../containers/PageList'
 import CategoryForm from './CategoryForm'
 
 const DragHandle = SortableHandle( () => <i className="fa fa-sort fa-fw"></i> )
@@ -39,7 +39,7 @@ const CategoryItem = SortableElement( ( { category, selectedCategory, ...handler
           <button onClick={ handleRemoveCategory }><i className="fa fa-minus"></i> Remove Category</button>
 
         </div>
-    {/*<PageList pages={ pages } onSelectPage={ handleSelectPage }/>*/}
+        <PageList pageIds={ pages } onSelectPage={ handleSelectPage }/>
       </div>
     </li>
   );
