@@ -7,6 +7,11 @@ const pagesById = ( state = {}, action ) => {
   switch ( action.type ) {
     case categories_types.GET_CATEGORIES_SUCCESS:
       return action.data.entities.pages
+    case types.GET_PAGE_SUCCESS:
+      return {
+        ...state,
+        [ action.data.result ]: action.data.entities.pages[ action.data.result ]
+      }
     default:
       return state
   }

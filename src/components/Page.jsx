@@ -1,33 +1,27 @@
 import React from 'react';
-import marked from 'marked';
 
-import PageForm from './PageForm'
+import Section from './Section'
 
-const Page = ( { page } ) => {
+const Page = ( { page, sectionsById, isFetching } ) => {
 
-  marked.setOptions({
-    sanitize: true
-  })
+  const render = () => {
+    if ( isFetching ) {
+      return ( <p>Loading...</p> )
+    } else if ( !page ) {
+      return ( <p>No page selected</p> )
+    } else {
+      return (
+        <div className="main">
+          <h1>{ page.title }</h1>
+          { page.sections.map( ( sectionId, index ) => <Section section={ sectionsById[ sectionId ] } /> ) }
+        </div>
+      )
+    }
+  }
 
-  return(
-    <div className="main">
-      { page &&
-        <h1>{ page.title }</h1>
-        /*{ page.sections.map( ( section, index ) => (
 
-          <section key={ section.id }>
-            <div className="output">
-              <h2>{ section.title }</h2>
-              <div dangerouslySetInnerHTML={ { __html: marked(section.text) } }></div>
-            </div>
-            <div className="input">
-              <PageForm section={ section } />
-            </div>
-          </section>
-        ))} */
-      }
-    </div>
-  )
+  return render()
+
 }
 
 export default Page
