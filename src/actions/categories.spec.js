@@ -161,7 +161,7 @@ describe( 'Asynchronous category functions', () => {
       .get( '/api/categories' )
       .reply( 200, [ { id: 1 }, { id: 2 } ] )
 
-    const store = mockStore( { items: [] } )
+    const store = mockStore()
 
     return store.dispatch( actions.apiGetCategories() ).then( () => {
       expect( store.getActions() ).toEqual( expectedActions )
@@ -188,7 +188,7 @@ describe( 'Asynchronous category functions', () => {
       .post( '/api/categories' )
       .reply( 200, { id: 1, title: "Test"} )
 
-    const store = mockStore( { items: [] } )
+    const store = mockStore()
 
     return store.dispatch( actions.apiPostCategory( "Test" ) ).then( () => {
       expect( store.getActions() ).toEqual( expectedActions )
@@ -215,7 +215,7 @@ describe( 'Asynchronous category functions', () => {
       .put( '/api/categories/1' )
       .reply( 200, { id: 1, title: "Test" } )
 
-    const store = mockStore( { items: [] } )
+    const store = mockStore()
 
     return store.dispatch( actions.apiPutCategory( 1, { title: "Test" } ) ).then( () => {
       expect( store.getActions() ).toEqual( expectedActions )
@@ -242,7 +242,7 @@ describe( 'Asynchronous category functions', () => {
       .put( '/api/categories' )
       .reply( 200, [ { id: 1, order: 1 } ] )
 
-    const store = mockStore( { items: [] } )
+    const store = mockStore()
 
     return store.dispatch( actions.apiPutCategories( [ 1 ], [ { id: 1, order: 1 } ] ) ).then( () => {
       expect( store.getActions() ).toEqual( expectedActions )
@@ -270,7 +270,7 @@ describe( 'Asynchronous category functions', () => {
       .put( '/api/categories' )
       .replyWithError( 'Error' )
 
-    const store = mockStore( { items: [] } )
+    const store = mockStore()
 
     return store.dispatch( actions.apiPutCategories( [ 1, 2 ], [ { id: 1, order: 0 }, { id: 2, order: 1 } ], [ 2, 1 ] ) )
       .then( () => {
@@ -298,7 +298,7 @@ describe( 'Asynchronous category functions', () => {
       .delete( '/api/categories/1' )
       .reply( 204 )
 
-    const store = mockStore( { items: [] } )
+    const store = mockStore()
 
     return store.dispatch( actions.apiDeleteCategory( 1 ) ).then( () => {
       expect( store.getActions() ).toEqual( expectedActions )
