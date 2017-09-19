@@ -4,21 +4,21 @@ import axios from 'axios';
 import * as types from '../constants/pages_types';
 import { pageEntity } from '../actions/schema'
 
-const pageFetching = ( status ) => {
+export const pageFetching = ( status ) => {
   return {
     type: types.PAGES_REQUEST_STATUS,
     status
   }
 }
 
-const getPageSuccess = ( data ) => {
+export const getPageSuccess = ( data ) => {
   return {
     type: types.GET_PAGE_SUCCESS,
     data: normalize( data, pageEntity )
   }
 }
 
-const getPageFailure = ( error ) => {
+export const getPageFailure = ( error ) => {
   return {
     type: types.GET_PAGE_FAILURE,
     error
