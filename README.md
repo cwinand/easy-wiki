@@ -1,24 +1,45 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+**NOTE: This is an unfinished application. Do not expect it to do anything.**
 
-* Ruby version
+This application is intended for use as an easy to set up, easy to understand wiki. It is mostly a React/Redux application, and it has a Rails API back end.
 
-* System dependencies
+## Setup
 
-* Configuration
+The API layer uses Postgres, the best way to install it on a Mac is homebrew.
 
-* Database creation
+```shell
+$ brew install postgresql
+$ brew services start postgresql
 
-* Database initialization
+# Create the DB and user
+$ createuser -s easy-wiki
+$ createdb -O easy-wiki easy-wiki_development
+```
 
-* How to run the test suite
+Then clone the repo, install dependencies, and migrate the DB.
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+$ git clone https://github.com/cwinand/easy-wiki.git
+$ bundle install
+$ yarn
+$ rake db:migrate
+```
 
-* Deployment instructions
+Finally, open two terminal windows to start both the front-end build server and the rails server.
 
-* ...
+```shell
+# Currently, the API calls are hardcoded to localhost:3002
+$ rails s -p 3002
+```
+
+```shell
+# Keep the terminal a little quieter...
+$ npm start -s
+```
+
+Check out the application at localhost:3000
+
+
